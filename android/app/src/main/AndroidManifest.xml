@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.scaffoldzoid_app">
+    package="com.ayush.scaffoldzoid">
+ <uses-permission android:name="android.permission.INTERNET" />
+
    <application
-        android:label="scaffoldzoid_app"
-        android:name="${applicationName}"
+        android:label="Scaffoldzoid"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
