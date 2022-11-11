@@ -1,4 +1,4 @@
-package com.example.scaffoldzoid_app
+package com.ayush.scaffoldzoid
 
 import io.flutter.embedding.android.FlutterActivity
 
