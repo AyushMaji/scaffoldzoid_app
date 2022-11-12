@@ -33,7 +33,10 @@ class SellerHomePage extends StatelessWidget {
                 height: 100.h,
               ),
             ),
-            const UserHeader(),
+            UserHeader(
+                tittle: "Welcome User",
+                subtittle: "heck all your activity",
+                picture: ConstantData.profilePic),
             SizedBox(
               height: 25.h,
             ),

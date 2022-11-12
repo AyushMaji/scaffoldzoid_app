@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:scaffoldzoid_app/constant/data.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
-import 'package:scaffoldzoid_app/views/dashboard/seller/home_page.dart';
+import 'package:scaffoldzoid_app/views/dashboard/buyer/home_page.dart';
 import 'package:scaffoldzoid_app/views/register/register_page.dart';
 import 'package:scaffoldzoid_app/widgets/button/button.dart';
 import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
@@ -18,14 +18,14 @@ class LoginPage extends StatelessWidget {
         Get.snackbar('Error', 'Please fill all the fields');
       } else {
         Get.snackbar('Success', 'Login Successful');
-        Get.offAll(() => const SellerHomePage());
+        Get.offAll(() => const BuyerHomePage());
       }
     }
 
     return Scaffold(
       backgroundColor: Kcolor.bgColor,
       bottomNavigationBar: SizedBox(
-        height: 50.h,
+        height: 40.h,
         child: Button(
           label: 'LOGIN',
           onPressed: login,

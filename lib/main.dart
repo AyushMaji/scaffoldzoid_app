@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
-import 'package:scaffoldzoid_app/views/user_details/userdetails_page.dart';
+import 'package:scaffoldzoid_app/views/register/register_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Scaffoldzoid',
             theme: ThemeData(useMaterial3: true),
-            home: const UserDetailsPage(),
+            home: const RegisterPage(),
           );
         });
   }

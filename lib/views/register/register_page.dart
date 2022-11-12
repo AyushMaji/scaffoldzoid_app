@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:scaffoldzoid_app/constant/data.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/views/login/login_page.dart';
+import 'package:scaffoldzoid_app/views/user_details/userdetails_page.dart';
 import 'package:scaffoldzoid_app/widgets/button/button.dart';
 import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 
@@ -23,6 +24,7 @@ class RegisterPage extends StatelessWidget {
         Get.snackbar('Error', 'Password and Confirm Password do not match');
       } else {
         Get.snackbar('Success', 'Registration Successful');
+        Get.offAll(() => const UserDetailsPage());
       }
     }
 

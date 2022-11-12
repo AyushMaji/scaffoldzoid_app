@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';

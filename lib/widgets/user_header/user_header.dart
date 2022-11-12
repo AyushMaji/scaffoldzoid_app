@@ -1,10 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:scaffoldzoid_app/constant/data.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/views/register/register_page.dart';
 import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 
 class UserHeader extends StatefulWidget {
-  const UserHeader({super.key});
+  final String? tittle;
+  final String? subtittle;
+  final String? picture;
+  const UserHeader(
+      {super.key,
+      required this.tittle,
+      required this.subtittle,
+      required this.picture});
 
   @override
   State<UserHeader> createState() => _UserHeaderState();
@@ -170,14 +178,14 @@ class _UserHeaderState extends State<UserHeader> {
           child: Center(
             child: ListTile(
               title: Text(
-                ' Welcome User,',
+                widget.tittle!,
                 style: GoogleFonts.poppins(
                     color: Kcolor.headingColor,
                     fontSize: 13.5.sp,
                     fontWeight: FontWeight.w700),
               ),
               subtitle: Text(
-                ' Check your Activity',
+                widget.subtittle!,
                 style: GoogleFonts.poppins(
                     color: Kcolor.primaryColor,
                     fontSize: 12.5.sp,
@@ -189,8 +197,7 @@ class _UserHeaderState extends State<UserHeader> {
                   height: 50.h,
                   width: 50.h,
                   fit: BoxFit.cover,
-                  imageUrl:
-                      'https://img.mensxp.com/media/content/2022/Aug/Header-Image_BCCL_62e91b2d4c4a5.jpeg',
+                  imageUrl: widget.picture ?? ConstantData.profilePic,
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
