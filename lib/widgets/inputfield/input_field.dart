@@ -1,4 +1,3 @@
-import 'package:scaffoldzoid_app/constant/color.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 
 class InputField extends StatelessWidget {
@@ -25,7 +24,7 @@ class InputField extends StatelessWidget {
         child: TextField(
           keyboardType: keyboardType,
           textCapitalization: textCapitalization,
-          controller: TextEditingController(),
+          controller: controller,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             focusedBorder: OutlineInputBorder(

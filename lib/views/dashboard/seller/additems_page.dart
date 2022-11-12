@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:scaffoldzoid_app/constant/color.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
+import 'package:scaffoldzoid_app/utils/messsenger.dart';
 import 'package:scaffoldzoid_app/widgets/button/button.dart';
 import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
+import 'package:scaffoldzoid_app/widgets/price_card/price_card.dart';
 
 class AddItemsPage extends StatefulWidget {
   const AddItemsPage({super.key});
@@ -17,25 +19,44 @@ class _AddItemsPageState extends State<AddItemsPage> {
   String iteamData = "Weight";
   String? selectedValue;
   bool isAvailability = true;
+  List priceList = [];
+  final List<String> items = [
+    '500 gm',
+    '1 kg',
+    '2 kg',
+    '3 kg',
+    '4 kg',
+    '5 kg',
+  ];
+  final TextEditingController orangeType = TextEditingController();
+  final TextEditingController orangeCategory = TextEditingController();
+  final TextEditingController orangePrice = TextEditingController();
+  final TextEditingController orangeQuantity = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final List<String> items = [
-      '500 gm',
-      '1 kg',
-      '2 kg',
-      '3 kg',
-      '4 kg',
-      '5 kg',
-    ];
+    void addItems() {
+      if (orangeType.text == '') {
+        CustomSnackbar.errorSnackbar('error', 'Please enter orange type');
+      } else if (orangeCategory.text == '') {
+        CustomSnackbar.errorSnackbar('error', 'Please enter orange category');
+      } else if (priceList.isEmpty) {
+        CustomSnackbar.errorSnackbar('error', 'Please enter orange price');
+      } else {
+        Get.to(const AddItemsPage());
+        log(priceList.toString());
+        log(orangeType.text);
+        log(orangeCategory.text);
+        log(isAvailability.toString());
+      }
+    }
+
     return Scaffold(
       bottomNavigationBar: SizedBox(
-        height: 48.h,
+        height: 40.h,
         child: Button(
           label: 'SAVE',
-          onPressed: () {
-            Get.to(const AddItemsPage());
-          },
+          onPressed: addItems,
         ),
       ),
       backgroundColor: Kcolor.bgColor,
@@ -67,7 +88,7 @@ class _AddItemsPageState extends State<AddItemsPage> {
             InputField(
               hintText: 'Orange Type Name',
               labelText: 'Orange Type Name',
-              controller: TextEditingController(),
+              controller: orangeType,
               keyboardType: TextInputType.text,
               textCapitalization: TextCapitalization.words,
             ),
@@ -77,8 +98,8 @@ class _AddItemsPageState extends State<AddItemsPage> {
             InputField(
               hintText: 'Orange Category',
               labelText: 'Orange Category',
-              controller: TextEditingController(),
-              keyboardType: TextInputType.number,
+              controller: orangeCategory,
+              keyboardType: TextInputType.text,
               textCapitalization: TextCapitalization.words,
             ),
             SizedBox(
@@ -159,6 +180,7 @@ class _AddItemsPageState extends State<AddItemsPage> {
                             setState(() {
                               selectedValue = value;
                               iteamData = value!;
+                              orangeQuantity.text = selectedValue!;
                             });
                           },
                         ),
@@ -171,7 +193,7 @@ class _AddItemsPageState extends State<AddItemsPage> {
                         child: InputField(
                           hintText: 'Price',
                           labelText: 'Price',
-                          controller: TextEditingController(),
+                          controller: orangePrice,
                           keyboardType: TextInputType.number,
                           textCapitalization: TextCapitalization.words,
                         ),
@@ -182,7 +204,25 @@ class _AddItemsPageState extends State<AddItemsPage> {
                     height: 10.h,
                   ),
                   TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (orangePrice.text == "") {
+                          CustomSnackbar.errorSnackbar(
+                              'error', 'Please enter price');
+                        } else if (orangeQuantity.text == "") {
+                          CustomSnackbar.errorSnackbar(
+                              'error', 'Please enter quantity');
+                        } else {
+                          setState(() {
+                            priceList.add(
+                              {
+                                "price": orangePrice.text,
+                                "quantity": orangeQuantity.text,
+                              },
+                            );
+                            orangePrice.text = '';
+                          });
+                        }
+                      },
                       icon: const Icon(
                         Icons.add,
                         color: Kcolor.primaryColor,
@@ -196,43 +236,21 @@ class _AddItemsPageState extends State<AddItemsPage> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Container(
-                      padding: EdgeInsets.only(left: 10.w),
-                      height: 50.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5.r)),
-                        border: Border.all(
-                            color: const Color.fromRGBO(200, 200, 200, 1)),
-                        color: const Color.fromRGBO(255, 255, 255, 1),
-                      ),
-                      child: Row(
-                        children: [
-                          Text(
-                            '600 gm',
-                            style: GoogleFonts.poppins(
-                              color: Kcolor.headingColor,
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          const Spacer(),
-                          Text(
-                            'Rs. 100',
-                            style: GoogleFonts.poppins(
-                              color: Kcolor.headingColor,
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.close,
-                                color: Kcolor.primaryColor,
-                                size: 20.sp,
-                              ))
-                        ],
-                      )),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: priceList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return PriceCard(
+                          price: priceList[index]['price'],
+                          quantity: priceList[index]['quantity'],
+                          onPressed: () {
+                            setState(() {
+                              priceList.removeAt(index);
+                            });
+                          },
+                        );
+                      }),
                 ],
               ),
             ),

@@ -1,7 +1,5 @@
 // create buttton widget
 
-import 'package:google_fonts/google_fonts.dart';
-import 'package:scaffoldzoid_app/constant/color.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 
 class Button extends StatelessWidget {
@@ -11,23 +9,21 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 50.h,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Kcolor.buttonColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(0.r),
-          ),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Kcolor.primaryColor,
         ),
-        onPressed: onPressed,
-        child: Text(
-          label,
-          style: GoogleFonts.poppins(
-            color: Kcolor.buttonTextColor,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w600,
+        width: double.infinity,
+        child: Center(
+          child: Text(
+            label,
+            style: GoogleFonts.poppins(
+              color: Kcolor.buttonTextColor,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),

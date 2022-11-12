@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:scaffoldzoid_app/constant/color.dart';
+import 'package:scaffoldzoid_app/constant/data.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/views/dashboard/seller/home_page.dart';
 import 'package:scaffoldzoid_app/views/register/register_page.dart';
@@ -12,15 +11,24 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    void login() {
+      if (emailController.text == '' || passwordController.text == '') {
+        Get.snackbar('Error', 'Please fill all the fields');
+      } else {
+        Get.snackbar('Success', 'Login Successful');
+        Get.offAll(() => const SellerHomePage());
+      }
+    }
+
     return Scaffold(
       backgroundColor: Kcolor.bgColor,
       bottomNavigationBar: SizedBox(
         height: 50.h,
         child: Button(
           label: 'LOGIN',
-          onPressed: () {
-            Get.off(() => const SellerHomePage());
-          },
+          onPressed: login,
         ),
       ),
       body: SingleChildScrollView(
@@ -30,8 +38,7 @@ class LoginPage extends StatelessWidget {
               height: 290.h,
               width: double.infinity,
               fit: BoxFit.cover,
-              imageUrl:
-                  'https://firebasestorage.googleapis.com/v0/b/scaffoldzoid.appspot.com/o/banner%2Fbanner.png?alt=media&token=509d5829-4644-417a-a8bc-6e9b9d5b02c1',
+              imageUrl: ConstantData.registerbanner,
               placeholder: (context, url) =>
                   const Center(child: CircularProgressIndicator()),
               errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -75,7 +82,7 @@ class LoginPage extends StatelessWidget {
             InputField(
               labelText: 'Email',
               hintText: 'Enter your email',
-              controller: TextEditingController(),
+              controller: emailController,
               keyboardType: TextInputType.text,
               textCapitalization: TextCapitalization.words,
             ),
@@ -85,7 +92,7 @@ class LoginPage extends StatelessWidget {
             InputField(
               labelText: 'Password',
               hintText: 'Enter your password',
-              controller: TextEditingController(),
+              controller: passwordController,
               keyboardType: TextInputType.text,
               textCapitalization: TextCapitalization.words,
             ),

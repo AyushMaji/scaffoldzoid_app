@@ -1,3 +1,4 @@
+import 'package:scaffoldzoid_app/constant/data.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 
 class SpalashPage extends StatelessWidget {
@@ -8,7 +9,7 @@ class SpalashPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Image.asset(
-          'assets/images/logo.png',
+          ConstantData.logo,
           width: 150.w,
           height: 150.h,
         ),
