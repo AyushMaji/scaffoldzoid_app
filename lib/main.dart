@@ -1,10 +1,13 @@
+import 'package:flutter/services.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
-import 'package:scaffoldzoid_app/views/register/register_page.dart';
+import 'package:scaffoldzoid_app/views/user_details/userdetails_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarColor: Kcolor.primaryColor));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +24,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Scaffoldzoid',
             theme: ThemeData(useMaterial3: true),
-            home: const RegisterPage(),
+            home: const UserDetailsPage(),
           );
         });
   }

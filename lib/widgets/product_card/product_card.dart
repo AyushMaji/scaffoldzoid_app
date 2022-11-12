@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:scaffoldzoid_app/constant/color.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 
 class ProductCard extends StatelessWidget {

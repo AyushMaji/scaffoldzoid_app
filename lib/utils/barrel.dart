@@ -6,3 +6,5 @@ export 'package:firebase_storage/firebase_storage.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:get/get.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
+export 'package:google_fonts/google_fonts.dart';
+export 'package:scaffoldzoid_app/constant/color.dart';
