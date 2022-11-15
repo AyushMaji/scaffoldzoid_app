@@ -1,6 +1,8 @@
 import 'package:scaffoldzoid_app/constant/data.dart';
+import 'package:scaffoldzoid_app/repo/Auth_repo.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/views/dashboard/buyer/productdetails_page.dart';
+import 'package:scaffoldzoid_app/views/login/login_page.dart';
 import 'package:scaffoldzoid_app/widgets/sellerprofile_card/sellerprofile_card.dart';
 
 class BuyerHomePage extends StatefulWidget {
@@ -14,6 +16,14 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Kcolor.primaryColor,
+            child: const Icon(Icons.logout_rounded),
+            onPressed: () {
+              AuthRepo()
+                  .logout()
+                  .whenComplete(() => Get.offAll(() => const LoginPage()));
+            }),
         body: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return <Widget>[

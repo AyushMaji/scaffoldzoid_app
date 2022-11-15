@@ -6,9 +6,9 @@ class ApiHelper {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   //* create a new document =====================>
-  Future<DocumentReference<Map<String, dynamic>>> createData(
-      String collection, Map<String, dynamic> data) async {
-    return await _firestore.collection(collection).add(data);
+  Future<void> createData(
+      String collection, Map<String, dynamic> data, String docId) async {
+    return await _firestore.collection(collection).doc(docId).set(data);
   }
 
   //* set a new document =======================>
@@ -20,6 +20,16 @@ class ApiHelper {
   //* read all documents =======================>
   Future<QuerySnapshot> readAllData(String collection) async {
     return await _firestore.collection(collection).get();
+  }
+
+  //* read all documents using stream builder =======================>
+  Stream<QuerySnapshot> readAllDataStream(String collection) {
+    return _firestore.collection(collection).snapshots();
+  }
+
+  // * read data by id =======================>
+  readDataByIdStream(String collection, String docId) async {
+    return _firestore.collection(collection).doc(docId).snapshots();
   }
 
   //* read by id ================================>
@@ -49,7 +59,7 @@ class ApiHelper {
   }
 
   //* read by field ===============================>
-  Future<QuerySnapshot> readDataByField(
+  Future<QuerySnapshot<Map<String, dynamic>>> readDataByField(
       String collection, String field, String value) async {
     return await _firestore
         .collection(collection)
@@ -107,5 +117,11 @@ class ApiHelper {
         .doc(collection2)
         .collection(collection2)
         .get();
+  }
+
+  //* update one field in a document by id ======>
+  Future<void> updateField(
+      String collection, String id, Map<String, dynamic> data) async {
+    await _firestore.collection(collection).doc(id).update(data);
   }
 }

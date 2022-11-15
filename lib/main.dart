@@ -1,6 +1,10 @@
 import 'package:flutter/services.dart';
+import 'package:scaffoldzoid_app/controller/auth/login/login_bloc.dart';
+import 'package:scaffoldzoid_app/controller/auth/register/register_bloc.dart';
+import 'package:scaffoldzoid_app/controller/user_details/user_details_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/views/register/register_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,11 +24,19 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Scaffoldzoid',
-            theme: ThemeData(useMaterial3: true),
-            home: const RegisterPage(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider<RegisterBloc>(create: (context) => RegisterBloc()),
+              BlocProvider<UserDetailsBloc>(
+                  create: (context) => UserDetailsBloc()),
+              BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
+            ],
+            child: GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Scaffoldzoid',
+              theme: ThemeData(useMaterial3: true),
+              home: const RegisterPage(),
+            ),
           );
         });
   }

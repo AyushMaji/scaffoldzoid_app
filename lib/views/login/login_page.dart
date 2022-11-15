@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scaffoldzoid_app/constant/data.dart';
+import 'package:scaffoldzoid_app/controller/auth/login/login_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/views/dashboard/buyer/home_page.dart';
+import 'package:scaffoldzoid_app/views/dashboard/seller/home_page.dart';
 import 'package:scaffoldzoid_app/views/register/register_page.dart';
 import 'package:scaffoldzoid_app/widgets/button/button.dart';
 import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
@@ -17,19 +20,39 @@ class LoginPage extends StatelessWidget {
       if (emailController.text == '' || passwordController.text == '') {
         Get.snackbar('Error', 'Please fill all the fields');
       } else {
-        Get.snackbar('Success', 'Login Successful');
-        Get.offAll(() => const BuyerHomePage());
+        context.read<LoginBloc>().add(
+            LoginEvent.loginWithEmailAndPasswordPressed(
+                email: emailController.text,
+                password: passwordController.text));
       }
     }
 
     return Scaffold(
       backgroundColor: Kcolor.bgColor,
-      bottomNavigationBar: SizedBox(
-        height: 40.h,
-        child: Button(
-          label: 'LOGIN',
-          onPressed: login,
-        ),
+      bottomNavigationBar: BlocConsumer<LoginBloc, LoginState>(
+        listener: (context, state) {
+          state.maybeWhen(
+              success: (role) {
+                if (role == 'Seller') {
+                  Get.offAll(() => const SellerHomePage());
+                } else {
+                  Get.offAll(() => const BuyerHomePage());
+                }
+              },
+              failure: (failure) {
+                Get.snackbar('Error', failure);
+              },
+              orElse: () {});
+        },
+        builder: (context, state) {
+          return SizedBox(
+            height: 40.h,
+            child: Button(
+              label: 'LOGIN',
+              onPressed: login,
+            ),
+          );
+        },
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:scaffoldzoid_app/constant/data.dart';
+import 'package:scaffoldzoid_app/repo/Auth_repo.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
-import 'package:scaffoldzoid_app/views/register/register_page.dart';
+import 'package:scaffoldzoid_app/utils/messsenger.dart';
+import 'package:scaffoldzoid_app/views/login/login_page.dart';
 import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 
 class UserHeader extends StatefulWidget {
@@ -22,8 +24,9 @@ class _UserHeaderState extends State<UserHeader> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   void logOut() {
-    Get.snackbar('Success', 'Logout Successful');
-    Get.offAll(() => const RegisterPage());
+    // logout function from auth repo
+    AuthRepo().logout().whenComplete(() => Get.offAll(const LoginPage()));
+    CustomSnackbar.successSnackbar('Success', 'Logged out successfully');
   }
 
   void chnageDetails() {

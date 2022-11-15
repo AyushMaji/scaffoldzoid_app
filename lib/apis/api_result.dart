@@ -1,14 +1,9 @@
-class ApiResult {
-  final dynamic data;
-  final String message;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  ApiResult({this.data, required this.message});
+part 'api_result.freezed.dart';
 
-  factory ApiResult.success(dynamic data) {
-    return ApiResult(data: data, message: '');
-  }
-
-  factory ApiResult.failure(dynamic error) {
-    return ApiResult(message: error.toString());
-  }
+@freezed
+abstract class ApiResult<T> with _$ApiResult<T> {
+  const factory ApiResult.success({required T data}) = Success<T>;
+  const factory ApiResult.failure({required T error}) = Failure<T>;
 }

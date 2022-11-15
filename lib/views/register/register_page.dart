@@ -1,7 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_button2/custom_dropdown_button2.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scaffoldzoid_app/constant/data.dart';
+import 'package:scaffoldzoid_app/controller/auth/register/register_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
+import 'package:scaffoldzoid_app/utils/messsenger.dart';
+import 'package:scaffoldzoid_app/views/dashboard/buyer/home_page.dart';
 import 'package:scaffoldzoid_app/views/login/login_page.dart';
 import 'package:scaffoldzoid_app/views/user_details/userdetails_page.dart';
 import 'package:scaffoldzoid_app/widgets/button/button.dart';
@@ -37,19 +41,43 @@ class _RegisterPageState extends State<RegisterPage> {
       } else if (iteamData == "Select") {
         Get.snackbar('Error', 'Please select your role');
       } else {
-        Get.snackbar('Success', 'Registration Successful');
-        Get.offAll(() => const UserDetailsPage());
+        context
+            .read<RegisterBloc>()
+            .add(RegisterEvent.registerWithEmailAndPasswordPressed(
+              email: emailController.text,
+              password: passwordController.text,
+              role: iteamData,
+            ));
       }
     }
 
     return Scaffold(
       backgroundColor: Kcolor.bgColor,
-      bottomNavigationBar: SizedBox(
-        height: 40.h,
-        child: Button(
-          label: 'REGISTER',
-          onPressed: register,
-        ),
+      bottomNavigationBar: BlocConsumer<RegisterBloc, RegisterState>(
+        listener: (context, state) {
+          state.maybeWhen(
+            orElse: () {},
+            success: (role) {
+              if (role == 'Seller') {
+                Get.offAll(() => const UserDetailsPage());
+              } else {
+                Get.offAll(() => const BuyerHomePage());
+              }
+            },
+            failure: (failure) {
+              CustomSnackbar.flutterSnackbar(failure, context);
+            },
+          );
+        },
+        builder: (context, state) {
+          return SizedBox(
+            height: 40.h,
+            child: Button(
+              label: 'REGISTER',
+              onPressed: register,
+            ),
+          );
+        },
       ),
       body: SingleChildScrollView(
         child: Column(

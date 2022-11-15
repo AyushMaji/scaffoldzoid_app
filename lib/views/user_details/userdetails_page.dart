@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:scaffoldzoid_app/controller/user_details/user_details_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/utils/messsenger.dart';
 import 'package:scaffoldzoid_app/views/dashboard/seller/home_page.dart';
@@ -23,23 +25,47 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController descriptionController = TextEditingController();
 
+    // user details set function
+    void _setUserDetails() {
+      if (nameController.text.isEmpty) {
+        CustomSnackbar.flutterSnackbar('Please enter your name', context);
+      } else if (descriptionController.text.isEmpty) {
+        CustomSnackbar.flutterSnackbar(
+            'Please enter your description', context);
+      } else if (pickedImage == null) {
+        CustomSnackbar.flutterSnackbar('Please select your image', context);
+      } else {
+        context.read<UserDetailsBloc>().add(UserDetailsEvent.updateUserDetails(
+            name: nameController.text,
+            description: descriptionController.text,
+            imageUrl: pickedImage!));
+      }
+    }
+
     return Scaffold(
       backgroundColor: Kcolor.bgColor,
-      bottomNavigationBar: SizedBox(
-        height: 40.h,
-        width: double.infinity,
-        child: Button(
-          onPressed: () {
-            if (nameController.text.isNotEmpty &&
-                descriptionController.text.isNotEmpty) {
-            } else {
-              CustomSnackbar.errorSnackbar(
-                  'Error', 'Please fill all the fields');
+      bottomNavigationBar: BlocConsumer<UserDetailsBloc, UserDetailsState>(
+        listener: (context, state) {
+          state.maybeWhen(
+            orElse: () {},
+            success: () {
               Get.offAll(() => const SellerHomePage());
-            }
-          },
-          label: 'GET STARTED',
-        ),
+            },
+            failure: (failure) {
+              CustomSnackbar.flutterSnackbar(failure, context);
+            },
+          );
+        },
+        builder: (context, state) {
+          return SizedBox(
+            height: 40.h,
+            width: double.infinity,
+            child: Button(
+              onPressed: _setUserDetails,
+              label: 'GET STARTED',
+            ),
+          );
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
