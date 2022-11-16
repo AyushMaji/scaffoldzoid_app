@@ -29,6 +29,7 @@ class SetUserDetailsRepo {
     try {
       final Map<String, dynamic> data =
           await _network.getUserData('users', userId);
+      Logger().e(data);
       return ApiResult.success(data: data);
     } on FirebaseException catch (e) {
       Logger().e(e);

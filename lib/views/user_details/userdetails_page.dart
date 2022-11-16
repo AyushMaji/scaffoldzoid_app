@@ -48,8 +48,10 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
         listener: (context, state) {
           state.maybeWhen(
             orElse: () {},
-            success: () {
-              Get.offAll(() => const SellerHomePage());
+            success: (data) {
+              Get.offAll(() => const SellerHomePage(
+                    uuid: '4b4facb8-608c-4736-be5b-15569d31f468',
+                  ));
             },
             failure: (failure) {
               CustomSnackbar.flutterSnackbar(failure, context);

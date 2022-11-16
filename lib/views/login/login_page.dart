@@ -32,9 +32,9 @@ class LoginPage extends StatelessWidget {
       bottomNavigationBar: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
           state.maybeWhen(
-              success: (role) {
+              success: (role, uid) {
                 if (role == 'Seller') {
-                  Get.offAll(() => const SellerHomePage());
+                  Get.offAll(() => SellerHomePage(uuid: uid));
                 } else {
                   Get.offAll(() => const BuyerHomePage());
                 }

@@ -21,6 +21,7 @@ mixin _$UserDetailsEvent {
     required TResult Function() started,
     required TResult Function(String name, String description, File imageUrl)
         updateUserDetails,
+    required TResult Function() getUserDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$UserDetailsEvent {
     TResult? Function()? started,
     TResult? Function(String name, String description, File imageUrl)?
         updateUserDetails,
+    TResult? Function()? getUserDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$UserDetailsEvent {
     TResult Function()? started,
     TResult Function(String name, String description, File imageUrl)?
         updateUserDetails,
+    TResult Function()? getUserDetails,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,18 +45,21 @@ mixin _$UserDetailsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_UpdateUserDetails value) updateUserDetails,
+    required TResult Function(_GetUserDetails value) getUserDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_UpdateUserDetails value)? updateUserDetails,
+    TResult? Function(_GetUserDetails value)? getUserDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserDetails value)? updateUserDetails,
+    TResult Function(_GetUserDetails value)? getUserDetails,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -117,6 +123,7 @@ class _$_Started implements _Started {
     required TResult Function() started,
     required TResult Function(String name, String description, File imageUrl)
         updateUserDetails,
+    required TResult Function() getUserDetails,
   }) {
     return started();
   }
@@ -127,6 +134,7 @@ class _$_Started implements _Started {
     TResult? Function()? started,
     TResult? Function(String name, String description, File imageUrl)?
         updateUserDetails,
+    TResult? Function()? getUserDetails,
   }) {
     return started?.call();
   }
@@ -137,6 +145,7 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function(String name, String description, File imageUrl)?
         updateUserDetails,
+    TResult Function()? getUserDetails,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -150,6 +159,7 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_UpdateUserDetails value) updateUserDetails,
+    required TResult Function(_GetUserDetails value) getUserDetails,
   }) {
     return started(this);
   }
@@ -159,6 +169,7 @@ class _$_Started implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_UpdateUserDetails value)? updateUserDetails,
+    TResult? Function(_GetUserDetails value)? getUserDetails,
   }) {
     return started?.call(this);
   }
@@ -168,6 +179,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserDetails value)? updateUserDetails,
+    TResult Function(_GetUserDetails value)? getUserDetails,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -268,6 +280,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
     required TResult Function() started,
     required TResult Function(String name, String description, File imageUrl)
         updateUserDetails,
+    required TResult Function() getUserDetails,
   }) {
     return updateUserDetails(name, description, imageUrl);
   }
@@ -278,6 +291,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
     TResult? Function()? started,
     TResult? Function(String name, String description, File imageUrl)?
         updateUserDetails,
+    TResult? Function()? getUserDetails,
   }) {
     return updateUserDetails?.call(name, description, imageUrl);
   }
@@ -288,6 +302,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
     TResult Function()? started,
     TResult Function(String name, String description, File imageUrl)?
         updateUserDetails,
+    TResult Function()? getUserDetails,
     required TResult orElse(),
   }) {
     if (updateUserDetails != null) {
@@ -301,6 +316,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_UpdateUserDetails value) updateUserDetails,
+    required TResult Function(_GetUserDetails value) getUserDetails,
   }) {
     return updateUserDetails(this);
   }
@@ -310,6 +326,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_UpdateUserDetails value)? updateUserDetails,
+    TResult? Function(_GetUserDetails value)? getUserDetails,
   }) {
     return updateUserDetails?.call(this);
   }
@@ -319,6 +336,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserDetails value)? updateUserDetails,
+    TResult Function(_GetUserDetails value)? getUserDetails,
     required TResult orElse(),
   }) {
     if (updateUserDetails != null) {
@@ -343,12 +361,123 @@ abstract class _UpdateUserDetails implements UserDetailsEvent {
 }
 
 /// @nodoc
+abstract class _$$_GetUserDetailsCopyWith<$Res> {
+  factory _$$_GetUserDetailsCopyWith(
+          _$_GetUserDetails value, $Res Function(_$_GetUserDetails) then) =
+      __$$_GetUserDetailsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_GetUserDetailsCopyWithImpl<$Res>
+    extends _$UserDetailsEventCopyWithImpl<$Res, _$_GetUserDetails>
+    implements _$$_GetUserDetailsCopyWith<$Res> {
+  __$$_GetUserDetailsCopyWithImpl(
+      _$_GetUserDetails _value, $Res Function(_$_GetUserDetails) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_GetUserDetails implements _GetUserDetails {
+  const _$_GetUserDetails();
+
+  @override
+  String toString() {
+    return 'UserDetailsEvent.getUserDetails()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_GetUserDetails);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String name, String description, File imageUrl)
+        updateUserDetails,
+    required TResult Function() getUserDetails,
+  }) {
+    return getUserDetails();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String name, String description, File imageUrl)?
+        updateUserDetails,
+    TResult? Function()? getUserDetails,
+  }) {
+    return getUserDetails?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String name, String description, File imageUrl)?
+        updateUserDetails,
+    TResult Function()? getUserDetails,
+    required TResult orElse(),
+  }) {
+    if (getUserDetails != null) {
+      return getUserDetails();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_UpdateUserDetails value) updateUserDetails,
+    required TResult Function(_GetUserDetails value) getUserDetails,
+  }) {
+    return getUserDetails(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UpdateUserDetails value)? updateUserDetails,
+    TResult? Function(_GetUserDetails value)? getUserDetails,
+  }) {
+    return getUserDetails?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UpdateUserDetails value)? updateUserDetails,
+    TResult Function(_GetUserDetails value)? getUserDetails,
+    required TResult orElse(),
+  }) {
+    if (getUserDetails != null) {
+      return getUserDetails(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetUserDetails implements UserDetailsEvent {
+  const factory _GetUserDetails() = _$_GetUserDetails;
+}
+
+/// @nodoc
 mixin _$UserDetailsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(UserDataModel userDetails) success,
     required TResult Function(String error) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -356,7 +485,7 @@ mixin _$UserDetailsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(UserDataModel userDetails)? success,
     TResult? Function(String error)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -364,7 +493,7 @@ mixin _$UserDetailsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(UserDataModel userDetails)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) =>
@@ -453,7 +582,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(UserDataModel userDetails) success,
     required TResult Function(String error) failure,
   }) {
     return initial();
@@ -464,7 +593,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(UserDataModel userDetails)? success,
     TResult? Function(String error)? failure,
   }) {
     return initial?.call();
@@ -475,7 +604,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(UserDataModel userDetails)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -566,7 +695,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(UserDataModel userDetails) success,
     required TResult Function(String error) failure,
   }) {
     return loading();
@@ -577,7 +706,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(UserDataModel userDetails)? success,
     TResult? Function(String error)? failure,
   }) {
     return loading?.call();
@@ -588,7 +717,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(UserDataModel userDetails)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -645,6 +774,8 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserDataModel userDetails});
 }
 
 /// @nodoc
@@ -653,36 +784,61 @@ class __$$_SuccessCopyWithImpl<$Res>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userDetails = null,
+  }) {
+    return _then(_$_Success(
+      userDetails: null == userDetails
+          ? _value.userDetails
+          : userDetails // ignore: cast_nullable_to_non_nullable
+              as UserDataModel,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success();
+  const _$_Success({required this.userDetails});
+
+  @override
+  final UserDataModel userDetails;
 
   @override
   String toString() {
-    return 'UserDetailsState.success()';
+    return 'UserDetailsState.success(userDetails: $userDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Success);
+        (other.runtimeType == runtimeType &&
+            other is _$_Success &&
+            (identical(other.userDetails, userDetails) ||
+                other.userDetails == userDetails));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, userDetails);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(UserDataModel userDetails) success,
     required TResult Function(String error) failure,
   }) {
-    return success();
+    return success(userDetails);
   }
 
   @override
@@ -690,10 +846,10 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(UserDataModel userDetails)? success,
     TResult? Function(String error)? failure,
   }) {
-    return success?.call();
+    return success?.call(userDetails);
   }
 
   @override
@@ -701,12 +857,12 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(UserDataModel userDetails)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(userDetails);
     }
     return orElse();
   }
@@ -750,7 +906,13 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements UserDetailsState {
-  const factory _Success() = _$_Success;
+  const factory _Success({required final UserDataModel userDetails}) =
+      _$_Success;
+
+  UserDataModel get userDetails;
+  @JsonKey(ignore: true)
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -818,7 +980,7 @@ class _$_Failure implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(UserDataModel userDetails) success,
     required TResult Function(String error) failure,
   }) {
     return failure(error);
@@ -829,7 +991,7 @@ class _$_Failure implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(UserDataModel userDetails)? success,
     TResult? Function(String error)? failure,
   }) {
     return failure?.call(error);
@@ -840,7 +1002,7 @@ class _$_Failure implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(UserDataModel userDetails)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {

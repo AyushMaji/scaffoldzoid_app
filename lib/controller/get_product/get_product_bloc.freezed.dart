@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'login_bloc.dart';
+part of 'get_product_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,64 +15,59 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$LoginEvent {
+mixin _$GetProductEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String email, String password)
-        loginWithEmailAndPasswordPressed,
+    required TResult Function(String productId) getProductDetailsById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String email, String password)?
-        loginWithEmailAndPasswordPressed,
+    TResult? Function(String productId)? getProductDetailsById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String email, String password)?
-        loginWithEmailAndPasswordPressed,
+    TResult Function(String productId)? getProductDetailsById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_LoginWithEmailAndPasswordPressed value)
-        loginWithEmailAndPasswordPressed,
+    required TResult Function(_GetProductDetailsById value)
+        getProductDetailsById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult? Function(_GetProductDetailsById value)? getProductDetailsById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult Function(_GetProductDetailsById value)? getProductDetailsById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoginEventCopyWith<$Res> {
-  factory $LoginEventCopyWith(
-          LoginEvent value, $Res Function(LoginEvent) then) =
-      _$LoginEventCopyWithImpl<$Res, LoginEvent>;
+abstract class $GetProductEventCopyWith<$Res> {
+  factory $GetProductEventCopyWith(
+          GetProductEvent value, $Res Function(GetProductEvent) then) =
+      _$GetProductEventCopyWithImpl<$Res, GetProductEvent>;
 }
 
 /// @nodoc
-class _$LoginEventCopyWithImpl<$Res, $Val extends LoginEvent>
-    implements $LoginEventCopyWith<$Res> {
-  _$LoginEventCopyWithImpl(this._value, this._then);
+class _$GetProductEventCopyWithImpl<$Res, $Val extends GetProductEvent>
+    implements $GetProductEventCopyWith<$Res> {
+  _$GetProductEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -89,7 +84,7 @@ abstract class _$$_StartedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_StartedCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res, _$_Started>
+    extends _$GetProductEventCopyWithImpl<$Res, _$_Started>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, _then);
@@ -102,7 +97,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'LoginEvent.started()';
+    return 'GetProductEvent.started()';
   }
 
   @override
@@ -118,8 +113,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String email, String password)
-        loginWithEmailAndPasswordPressed,
+    required TResult Function(String productId) getProductDetailsById,
   }) {
     return started();
   }
@@ -128,8 +122,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String email, String password)?
-        loginWithEmailAndPasswordPressed,
+    TResult? Function(String productId)? getProductDetailsById,
   }) {
     return started?.call();
   }
@@ -138,8 +131,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String email, String password)?
-        loginWithEmailAndPasswordPressed,
+    TResult Function(String productId)? getProductDetailsById,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -152,8 +144,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_LoginWithEmailAndPasswordPressed value)
-        loginWithEmailAndPasswordPressed,
+    required TResult Function(_GetProductDetailsById value)
+        getProductDetailsById,
   }) {
     return started(this);
   }
@@ -162,8 +154,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult? Function(_GetProductDetailsById value)? getProductDetailsById,
   }) {
     return started?.call(this);
   }
@@ -172,8 +163,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult Function(_GetProductDetailsById value)? getProductDetailsById,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -183,43 +173,36 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements LoginEvent {
+abstract class _Started implements GetProductEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$_LoginWithEmailAndPasswordPressedCopyWith<$Res> {
-  factory _$$_LoginWithEmailAndPasswordPressedCopyWith(
-          _$_LoginWithEmailAndPasswordPressed value,
-          $Res Function(_$_LoginWithEmailAndPasswordPressed) then) =
-      __$$_LoginWithEmailAndPasswordPressedCopyWithImpl<$Res>;
+abstract class _$$_GetProductDetailsByIdCopyWith<$Res> {
+  factory _$$_GetProductDetailsByIdCopyWith(_$_GetProductDetailsById value,
+          $Res Function(_$_GetProductDetailsById) then) =
+      __$$_GetProductDetailsByIdCopyWithImpl<$Res>;
   @useResult
-  $Res call({String email, String password});
+  $Res call({String productId});
 }
 
 /// @nodoc
-class __$$_LoginWithEmailAndPasswordPressedCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res, _$_LoginWithEmailAndPasswordPressed>
-    implements _$$_LoginWithEmailAndPasswordPressedCopyWith<$Res> {
-  __$$_LoginWithEmailAndPasswordPressedCopyWithImpl(
-      _$_LoginWithEmailAndPasswordPressed _value,
-      $Res Function(_$_LoginWithEmailAndPasswordPressed) _then)
+class __$$_GetProductDetailsByIdCopyWithImpl<$Res>
+    extends _$GetProductEventCopyWithImpl<$Res, _$_GetProductDetailsById>
+    implements _$$_GetProductDetailsByIdCopyWith<$Res> {
+  __$$_GetProductDetailsByIdCopyWithImpl(_$_GetProductDetailsById _value,
+      $Res Function(_$_GetProductDetailsById) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = null,
-    Object? password = null,
+    Object? productId = null,
   }) {
-    return _then(_$_LoginWithEmailAndPasswordPressed(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
+    return _then(_$_GetProductDetailsById(
+      null == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -227,72 +210,63 @@ class __$$_LoginWithEmailAndPasswordPressedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoginWithEmailAndPasswordPressed
-    implements _LoginWithEmailAndPasswordPressed {
-  const _$_LoginWithEmailAndPasswordPressed(
-      {required this.email, required this.password});
+class _$_GetProductDetailsById implements _GetProductDetailsById {
+  const _$_GetProductDetailsById(this.productId);
 
   @override
-  final String email;
-  @override
-  final String password;
+  final String productId;
 
   @override
   String toString() {
-    return 'LoginEvent.loginWithEmailAndPasswordPressed(email: $email, password: $password)';
+    return 'GetProductEvent.getProductDetailsById(productId: $productId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoginWithEmailAndPasswordPressed &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password));
+            other is _$_GetProductDetailsById &&
+            (identical(other.productId, productId) ||
+                other.productId == productId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode => Object.hash(runtimeType, productId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoginWithEmailAndPasswordPressedCopyWith<
-          _$_LoginWithEmailAndPasswordPressed>
-      get copyWith => __$$_LoginWithEmailAndPasswordPressedCopyWithImpl<
-          _$_LoginWithEmailAndPasswordPressed>(this, _$identity);
+  _$$_GetProductDetailsByIdCopyWith<_$_GetProductDetailsById> get copyWith =>
+      __$$_GetProductDetailsByIdCopyWithImpl<_$_GetProductDetailsById>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String email, String password)
-        loginWithEmailAndPasswordPressed,
+    required TResult Function(String productId) getProductDetailsById,
   }) {
-    return loginWithEmailAndPasswordPressed(email, password);
+    return getProductDetailsById(productId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String email, String password)?
-        loginWithEmailAndPasswordPressed,
+    TResult? Function(String productId)? getProductDetailsById,
   }) {
-    return loginWithEmailAndPasswordPressed?.call(email, password);
+    return getProductDetailsById?.call(productId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String email, String password)?
-        loginWithEmailAndPasswordPressed,
+    TResult Function(String productId)? getProductDetailsById,
     required TResult orElse(),
   }) {
-    if (loginWithEmailAndPasswordPressed != null) {
-      return loginWithEmailAndPasswordPressed(email, password);
+    if (getProductDetailsById != null) {
+      return getProductDetailsById(productId);
     }
     return orElse();
   }
@@ -301,74 +275,69 @@ class _$_LoginWithEmailAndPasswordPressed
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_LoginWithEmailAndPasswordPressed value)
-        loginWithEmailAndPasswordPressed,
+    required TResult Function(_GetProductDetailsById value)
+        getProductDetailsById,
   }) {
-    return loginWithEmailAndPasswordPressed(this);
+    return getProductDetailsById(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult? Function(_GetProductDetailsById value)? getProductDetailsById,
   }) {
-    return loginWithEmailAndPasswordPressed?.call(this);
+    return getProductDetailsById?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult Function(_GetProductDetailsById value)? getProductDetailsById,
     required TResult orElse(),
   }) {
-    if (loginWithEmailAndPasswordPressed != null) {
-      return loginWithEmailAndPasswordPressed(this);
+    if (getProductDetailsById != null) {
+      return getProductDetailsById(this);
     }
     return orElse();
   }
 }
 
-abstract class _LoginWithEmailAndPasswordPressed implements LoginEvent {
-  const factory _LoginWithEmailAndPasswordPressed(
-      {required final String email,
-      required final String password}) = _$_LoginWithEmailAndPasswordPressed;
+abstract class _GetProductDetailsById implements GetProductEvent {
+  const factory _GetProductDetailsById(final String productId) =
+      _$_GetProductDetailsById;
 
-  String get email;
-  String get password;
+  String get productId;
   @JsonKey(ignore: true)
-  _$$_LoginWithEmailAndPasswordPressedCopyWith<
-          _$_LoginWithEmailAndPasswordPressed>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_GetProductDetailsByIdCopyWith<_$_GetProductDetailsById> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$LoginState {
+mixin _$GetProductState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String role, String uid) success,
-    required TResult Function(String failure) failure,
+    required TResult Function(ProductDataModel productDetails) loaded,
+    required TResult Function(String error) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String role, String uid)? success,
-    TResult? Function(String failure)? failure,
+    TResult? Function(ProductDataModel productDetails)? loaded,
+    TResult? Function(String error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String role, String uid)? success,
-    TResult Function(String failure)? failure,
+    TResult Function(ProductDataModel productDetails)? loaded,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -376,7 +345,7 @@ mixin _$LoginState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -384,7 +353,7 @@ mixin _$LoginState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -392,7 +361,7 @@ mixin _$LoginState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -400,16 +369,16 @@ mixin _$LoginState {
 }
 
 /// @nodoc
-abstract class $LoginStateCopyWith<$Res> {
-  factory $LoginStateCopyWith(
-          LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res, LoginState>;
+abstract class $GetProductStateCopyWith<$Res> {
+  factory $GetProductStateCopyWith(
+          GetProductState value, $Res Function(GetProductState) then) =
+      _$GetProductStateCopyWithImpl<$Res, GetProductState>;
 }
 
 /// @nodoc
-class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
-    implements $LoginStateCopyWith<$Res> {
-  _$LoginStateCopyWithImpl(this._value, this._then);
+class _$GetProductStateCopyWithImpl<$Res, $Val extends GetProductState>
+    implements $GetProductStateCopyWith<$Res> {
+  _$GetProductStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -426,7 +395,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$_Initial>
+    extends _$GetProductStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -439,7 +408,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'LoginState.initial()';
+    return 'GetProductState.initial()';
   }
 
   @override
@@ -456,8 +425,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String role, String uid) success,
-    required TResult Function(String failure) failure,
+    required TResult Function(ProductDataModel productDetails) loaded,
+    required TResult Function(String error) failure,
   }) {
     return initial();
   }
@@ -467,8 +436,8 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String role, String uid)? success,
-    TResult? Function(String failure)? failure,
+    TResult? Function(ProductDataModel productDetails)? loaded,
+    TResult? Function(String error)? failure,
   }) {
     return initial?.call();
   }
@@ -478,8 +447,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String role, String uid)? success,
-    TResult Function(String failure)? failure,
+    TResult Function(ProductDataModel productDetails)? loaded,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -493,7 +462,7 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failure value) failure,
   }) {
     return initial(this);
@@ -504,7 +473,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failure value)? failure,
   }) {
     return initial?.call(this);
@@ -515,7 +484,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -526,7 +495,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements LoginState {
+abstract class _Initial implements GetProductState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -539,7 +508,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$_Loading>
+    extends _$GetProductStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -552,7 +521,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'LoginState.loading()';
+    return 'GetProductState.loading()';
   }
 
   @override
@@ -569,8 +538,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String role, String uid) success,
-    required TResult Function(String failure) failure,
+    required TResult Function(ProductDataModel productDetails) loaded,
+    required TResult Function(String error) failure,
   }) {
     return loading();
   }
@@ -580,8 +549,8 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String role, String uid)? success,
-    TResult? Function(String failure)? failure,
+    TResult? Function(ProductDataModel productDetails)? loaded,
+    TResult? Function(String error)? failure,
   }) {
     return loading?.call();
   }
@@ -591,8 +560,8 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String role, String uid)? success,
-    TResult Function(String failure)? failure,
+    TResult Function(ProductDataModel productDetails)? loaded,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -606,7 +575,7 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
@@ -617,7 +586,7 @@ class _$_Loading implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
@@ -628,7 +597,7 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -639,87 +608,79 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements LoginState {
+abstract class _Loading implements GetProductState {
   const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
-abstract class _$$_SuccessCopyWith<$Res> {
-  factory _$$_SuccessCopyWith(
-          _$_Success value, $Res Function(_$_Success) then) =
-      __$$_SuccessCopyWithImpl<$Res>;
+abstract class _$$_LoadedCopyWith<$Res> {
+  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
+      __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({String role, String uid});
+  $Res call({ProductDataModel productDetails});
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$_Success>
-    implements _$$_SuccessCopyWith<$Res> {
-  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
+class __$$_LoadedCopyWithImpl<$Res>
+    extends _$GetProductStateCopyWithImpl<$Res, _$_Loaded>
+    implements _$$_LoadedCopyWith<$Res> {
+  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? role = null,
-    Object? uid = null,
+    Object? productDetails = null,
   }) {
-    return _then(_$_Success(
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$_Loaded(
+      productDetails: null == productDetails
+          ? _value.productDetails
+          : productDetails // ignore: cast_nullable_to_non_nullable
+              as ProductDataModel,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Success implements _Success {
-  const _$_Success({required this.role, required this.uid});
+class _$_Loaded implements _Loaded {
+  const _$_Loaded({required this.productDetails});
 
   @override
-  final String role;
-  @override
-  final String uid;
+  final ProductDataModel productDetails;
 
   @override
   String toString() {
-    return 'LoginState.success(role: $role, uid: $uid)';
+    return 'GetProductState.loaded(productDetails: $productDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Success &&
-            (identical(other.role, role) || other.role == role) &&
-            (identical(other.uid, uid) || other.uid == uid));
+            other is _$_Loaded &&
+            (identical(other.productDetails, productDetails) ||
+                other.productDetails == productDetails));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, role, uid);
+  int get hashCode => Object.hash(runtimeType, productDetails);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String role, String uid) success,
-    required TResult Function(String failure) failure,
+    required TResult Function(ProductDataModel productDetails) loaded,
+    required TResult Function(String error) failure,
   }) {
-    return success(role, uid);
+    return loaded(productDetails);
   }
 
   @override
@@ -727,10 +688,10 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String role, String uid)? success,
-    TResult? Function(String failure)? failure,
+    TResult? Function(ProductDataModel productDetails)? loaded,
+    TResult? Function(String error)? failure,
   }) {
-    return success?.call(role, uid);
+    return loaded?.call(productDetails);
   }
 
   @override
@@ -738,12 +699,12 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String role, String uid)? success,
-    TResult Function(String failure)? failure,
+    TResult Function(ProductDataModel productDetails)? loaded,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(role, uid);
+    if (loaded != null) {
+      return loaded(productDetails);
     }
     return orElse();
   }
@@ -753,10 +714,10 @@ class _$_Success implements _Success {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failure value) failure,
   }) {
-    return success(this);
+    return loaded(this);
   }
 
   @override
@@ -764,10 +725,10 @@ class _$_Success implements _Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failure value)? failure,
   }) {
-    return success?.call(this);
+    return loaded?.call(this);
   }
 
   @override
@@ -775,25 +736,24 @@ class _$_Success implements _Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
   }
 }
 
-abstract class _Success implements LoginState {
-  const factory _Success(
-      {required final String role, required final String uid}) = _$_Success;
+abstract class _Loaded implements GetProductState {
+  const factory _Loaded({required final ProductDataModel productDetails}) =
+      _$_Loaded;
 
-  String get role;
-  String get uid;
+  ProductDataModel get productDetails;
   @JsonKey(ignore: true)
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -803,12 +763,12 @@ abstract class _$$_FailureCopyWith<$Res> {
           _$_Failure value, $Res Function(_$_Failure) then) =
       __$$_FailureCopyWithImpl<$Res>;
   @useResult
-  $Res call({String failure});
+  $Res call({String error});
 }
 
 /// @nodoc
 class __$$_FailureCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$_Failure>
+    extends _$GetProductStateCopyWithImpl<$Res, _$_Failure>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, _then);
@@ -816,12 +776,12 @@ class __$$_FailureCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? failure = null,
+    Object? error = null,
   }) {
     return _then(_$_Failure(
-      failure: null == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -830,14 +790,14 @@ class __$$_FailureCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Failure implements _Failure {
-  const _$_Failure({required this.failure});
+  const _$_Failure({required this.error});
 
   @override
-  final String failure;
+  final String error;
 
   @override
   String toString() {
-    return 'LoginState.failure(failure: $failure)';
+    return 'GetProductState.failure(error: $error)';
   }
 
   @override
@@ -845,11 +805,11 @@ class _$_Failure implements _Failure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Failure &&
-            (identical(other.failure, failure) || other.failure == failure));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure);
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
@@ -862,10 +822,10 @@ class _$_Failure implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String role, String uid) success,
-    required TResult Function(String failure) failure,
+    required TResult Function(ProductDataModel productDetails) loaded,
+    required TResult Function(String error) failure,
   }) {
-    return failure(this.failure);
+    return failure(error);
   }
 
   @override
@@ -873,10 +833,10 @@ class _$_Failure implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String role, String uid)? success,
-    TResult? Function(String failure)? failure,
+    TResult? Function(ProductDataModel productDetails)? loaded,
+    TResult? Function(String error)? failure,
   }) {
-    return failure?.call(this.failure);
+    return failure?.call(error);
   }
 
   @override
@@ -884,12 +844,12 @@ class _$_Failure implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String role, String uid)? success,
-    TResult Function(String failure)? failure,
+    TResult Function(ProductDataModel productDetails)? loaded,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(this.failure);
+      return failure(error);
     }
     return orElse();
   }
@@ -899,7 +859,7 @@ class _$_Failure implements _Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -910,7 +870,7 @@ class _$_Failure implements _Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -921,7 +881,7 @@ class _$_Failure implements _Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -932,10 +892,10 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements LoginState {
-  const factory _Failure({required final String failure}) = _$_Failure;
+abstract class _Failure implements GetProductState {
+  const factory _Failure({required final String error}) = _$_Failure;
 
-  String get failure;
+  String get error;
   @JsonKey(ignore: true)
   _$$_FailureCopyWith<_$_Failure> get copyWith =>
       throw _privateConstructorUsedError;

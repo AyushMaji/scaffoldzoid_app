@@ -21,7 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         // store user data in shared preferences
         prefs.setString('uid', data['uid']);
         prefs.setString('role', data['role']);
-        emit(_Success(role: data['role']));
+        emit(_Success(role: data['role'], uid: data['uid']));
       }, failure: (error) {
         Logger().e(error);
         emit(_Failure(failure: error));

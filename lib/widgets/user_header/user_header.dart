@@ -34,6 +34,16 @@ class _UserHeaderState extends State<UserHeader> {
   }
 
   @override
+  void initState() {
+    setState(() {
+      nameController.text = widget.tittle!;
+      descriptionController.text = widget.subtittle!;
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 13.w),
@@ -62,8 +72,9 @@ class _UserHeaderState extends State<UserHeader> {
                       child: CircleAvatar(
                         backgroundColor: Kcolor.textColor,
                         radius: 50.w,
-                        backgroundImage: const CachedNetworkImageProvider(
-                            'https://c.ndtvimg.com/2022-05/lq8fa9s_srk_625x300_24_May_22.jpg?im=Resize=(1230,900)'),
+                        backgroundImage: CachedNetworkImageProvider(
+                          widget.picture!,
+                        ),
                       ),
                     ),
                   ),

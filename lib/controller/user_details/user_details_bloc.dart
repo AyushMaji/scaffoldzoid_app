@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:scaffoldzoid_app/apis/api_result.dart';
+import 'package:scaffoldzoid_app/model/user_details/user_details_model.dart';
 import 'package:scaffoldzoid_app/repo/user_details_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,7 +22,19 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
           .setUserDetails(userId, event.name, event.description, event.imageUrl)
           .then((ApiResult result) {
         result.when(success: (data) {
-          emit(const _Success());
+          emit(_Success(userDetails: data));
+        }, failure: (error) {
+          emit(_Failure(error: error));
+        });
+      });
+    });
+    on<_GetUserDetails>((event, emit) async {
+      emit(const _Loading());
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String userId = prefs.getString('uid') ?? '';
+      await setUserDetailsRepo.getUserDetails(userId).then((ApiResult result) {
+        result.when(success: (data) {
+          emit(_Success(userDetails: UserDataModel.fromJson(data)));
         }, failure: (error) {
           emit(_Failure(error: error));
         });

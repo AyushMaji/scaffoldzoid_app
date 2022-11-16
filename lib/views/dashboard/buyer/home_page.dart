@@ -71,18 +71,51 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
                             fontWeight: FontWeight.w600)),
                   ],
                 ),
-                ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 3,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return SellerProfileCard(
-                          profilePic:
-                              "https://firebasestorage.googleapis.com/v0/b/scaffoldzoid.appspot.com/o/banner%2Favatar.png?alt=media&token=232bf921-3bf7-4244-abbb-72f8d3021671",
-                          name: ' Ayush Maji',
-                          types: 'Scaffolder',
-                          onTap: () {
-                            Get.to(() => const ProductDetailspage());
+                StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('users')
+                        .where('role', isEqualTo: 'Seller')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 15.h),
+                            child: SizedBox(
+                              height: 0.h,
+                            ),
+                          ),
+                        );
+                      }
+                      if (snapshot.data!.docs.isEmpty) {
+                        return Padding(
+                          padding: EdgeInsets.only(top: 15.h),
+                          child: SizedBox(
+                              height: 230.h,
+                              child: Center(
+                                  child: Text(
+                                'No Items Found',
+                                style: GoogleFonts.poppins(
+                                    color: Kcolor.headingColor,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w600),
+                              ))),
+                        );
+                      }
+                      return ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: snapshot.data!.docs.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return SellerProfileCard(
+                                profilePic: snapshot.data!.docs[index]
+                                    ['imageUrl'],
+                                name: snapshot.data!.docs[index]['name'],
+                                types: snapshot.data!.docs[index]
+                                    ['description'],
+                                onTap: () {
+                                  Get.to(() => const ProductDetailspage());
+                                });
                           });
                     })
               ],

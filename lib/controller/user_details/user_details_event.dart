@@ -7,4 +7,6 @@ class UserDetailsEvent with _$UserDetailsEvent {
       {required String name,
       required String description,
       required File imageUrl}) = _UpdateUserDetails;
+
+  const factory UserDetailsEvent.getUserDetails() = _GetUserDetails;
 }

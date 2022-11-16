@@ -45,15 +45,36 @@ class Network {
     return data;
   }
 
-  //* get user data using stream builder =====================>
-  Stream<Map<String, dynamic>> getUserDataStream(
-      String collection, String docId) {
-    return _apiHelper.readDataByIdStream(collection, docId);
+  //* add items in paticular collection ===============>
+  Future<void> addProductData(
+      String collection, Map<String, dynamic> data, String uid) async {
+    return await _apiHelper.createData(collection, data, uid);
   }
 
-  //* product data (orange items) in firstore ===============>
+  //* delete product data ===============>
+  Future<void> deleteProductData(String collection, String id) async {
+    return await _apiHelper.deleteData(collection, id);
+  }
+  // * get all product data by id ===========>
 
-  Future<void> productAdd(Map<String, dynamic> data, String uid) async {
-    return await _apiHelper.createData('product', data, uid);
+  Future<DocumentSnapshot<Map<String, dynamic>>> getAllProductDataById(
+      String collection, String id) async {
+    final DocumentSnapshot<Map<String, dynamic>> data =
+        await _apiHelper.readDataById(collection, id);
+    return data;
+  }
+  // * get all product data update by id ===========>
+
+  Future<void> updateProductData(
+      String collection, String id, Map<String, dynamic> data) async {
+    return await _apiHelper.updateField(collection, id, data);
+  }
+
+  //*  get user data by id ===========>
+  Future<DocumentSnapshot<Map<String, dynamic>>> getUserDataById(
+      String collection, String id) async {
+    final DocumentSnapshot<Map<String, dynamic>> data =
+        await _apiHelper.readDataById(collection, id);
+    return data;
   }
 }
