@@ -1,32 +1,73 @@
-import 'package:scaffoldzoid_app/constant/data.dart';
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:scaffoldzoid_app/controller/user_details/user_details_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/utils/messsenger.dart';
+import 'package:scaffoldzoid_app/views/dashboard/seller/home_page.dart';
 import 'package:scaffoldzoid_app/widgets/button/button.dart';
 import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 
-class UserDetailsPage extends StatelessWidget {
+class UserDetailsPage extends StatefulWidget {
   const UserDetailsPage({super.key});
 
+  @override
+  State<UserDetailsPage> createState() => _UserDetailsPageState();
+}
+
+class _UserDetailsPageState extends State<UserDetailsPage> {
+  File? pickedImage;
   @override
   Widget build(BuildContext context) {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController descriptionController = TextEditingController();
 
+    // user details set function
+    void _setUserDetails() {
+      if (nameController.text.isEmpty) {
+        CustomSnackbar.flutterSnackbar('Please enter your name', context);
+      } else if (descriptionController.text.isEmpty) {
+        CustomSnackbar.flutterSnackbar(
+            'Please enter your description', context);
+      } else if (pickedImage == null) {
+        CustomSnackbar.flutterSnackbar('Please select your image', context);
+      } else {
+        context.read<UserDetailsBloc>().add(UserDetailsEvent.updateUserDetails(
+            name: nameController.text,
+            description: descriptionController.text,
+            imageUrl: pickedImage!));
+      }
+    }
+
     return Scaffold(
-      bottomNavigationBar: SizedBox(
-        height: 40.h,
-        width: double.infinity,
-        child: Button(
-          onPressed: () {
-            if (nameController.text.isNotEmpty &&
-                descriptionController.text.isNotEmpty) {
-            } else {
-              CustomSnackbar.errorSnackbar(
-                  'Error', 'Please fill all the fields');
-            }
-          },
-          label: 'GET STARTED',
-        ),
+      backgroundColor: Kcolor.bgColor,
+      bottomNavigationBar: BlocConsumer<UserDetailsBloc, UserDetailsState>(
+        listener: (context, state) {
+          state.maybeWhen(
+            orElse: () {},
+            success: (data) {
+              Get.offAll(() => const SellerHomePage(
+                    uuid: '4b4facb8-608c-4736-be5b-15569d31f468',
+                  ));
+            },
+            failure: (failure) {
+              CustomSnackbar.flutterSnackbar(failure, context);
+            },
+          );
+        },
+        builder: (context, state) {
+          return SizedBox(
+            height: 40.h,
+            width: double.infinity,
+            child: Button(
+              onPressed: _setUserDetails,
+              label: 'GET STARTED',
+            ),
+          );
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -63,40 +104,46 @@ class UserDetailsPage extends StatelessWidget {
               height: 20.h,
             ),
             Center(
-              child: Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 52.sp,
-                    backgroundColor: Kcolor.primaryColor,
-                    child: CircleAvatar(
-                      backgroundColor: Kcolor.textColor,
-                      radius: 49.sp,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                ConstantData.profilePic,
+              child: GestureDetector(
+                onTap: () {
+                  loadPicker();
+                },
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 52.sp,
+                      backgroundColor: Kcolor.primaryColor,
+                      child: pickedImage != null
+                          ? CircleAvatar(
+                              radius: 49.sp,
+                              backgroundImage: FileImage(pickedImage!),
+                            )
+                          : CircleAvatar(
+                              backgroundColor:
+                                  const Color.fromRGBO(244, 244, 244, 1),
+                              radius: 49.sp,
+                              child: Image.asset(
+                                'assets/images/avatar.png',
+                                height: 70.h,
+                                width: 70.w,
                               ),
-                              fit: BoxFit.cover),
+                            ),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: CircleAvatar(
+                        radius: 13.5.sp,
+                        backgroundColor: Kcolor.primaryColor,
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Colors.white,
+                          size: 15.sp,
                         ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: CircleAvatar(
-                      radius: 13.5.sp,
-                      backgroundColor: Kcolor.primaryColor,
-                      child: Icon(
-                        Icons.camera_alt,
-                        color: Colors.white,
-                        size: 15.sp,
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -154,5 +201,51 @@ class UserDetailsPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  loadPicker() async {
+    final ImagePicker picker = ImagePicker();
+    XFile? pickedFile = (await picker.pickImage(source: ImageSource.gallery));
+    setState(() {
+      if (pickedFile != null) {
+        _cropImage(File(pickedFile.path));
+      } else {
+        log('No image selected.');
+      }
+    });
+  }
+
+  _cropImage(File picked) async {
+    CroppedFile? cropped = await ImageCropper().cropImage(
+      sourcePath: picked.path,
+      uiSettings: [
+        AndroidUiSettings(
+            toolbarTitle: 'Cropper',
+            toolbarColor: Colors.deepOrange,
+            toolbarWidgetColor: Colors.white,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false),
+        IOSUiSettings(
+          title: 'Cropper',
+        ),
+        WebUiSettings(
+          context: context,
+        ),
+      ],
+      aspectRatioPresets: [
+        CropAspectRatioPreset.original,
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio16x9,
+        CropAspectRatioPreset.ratio4x3,
+        CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.ratio7x5,
+      ],
+      maxWidth: 800,
+    );
+    if (cropped != null) {
+      setState(() {
+        pickedImage = File(cropped.path);
+      });
+    }
   }
 }

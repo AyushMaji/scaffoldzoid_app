@@ -1,10 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:scaffoldzoid_app/constant/data.dart';
+import 'package:scaffoldzoid_app/repo/Auth_repo.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
-import 'package:scaffoldzoid_app/views/register/register_page.dart';
+import 'package:scaffoldzoid_app/utils/messsenger.dart';
+import 'package:scaffoldzoid_app/views/login/login_page.dart';
 import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 
 class UserHeader extends StatefulWidget {
-  const UserHeader({super.key});
+  final String? tittle;
+  final String? subtittle;
+  final String? picture;
+  const UserHeader(
+      {super.key,
+      required this.tittle,
+      required this.subtittle,
+      required this.picture});
 
   @override
   State<UserHeader> createState() => _UserHeaderState();
@@ -14,12 +24,23 @@ class _UserHeaderState extends State<UserHeader> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   void logOut() {
-    Get.snackbar('Success', 'Logout Successful');
-    Get.offAll(() => const RegisterPage());
+    // logout function from auth repo
+    AuthRepo().logout().whenComplete(() => Get.offAll(const LoginPage()));
+    CustomSnackbar.successSnackbar('Success', 'Logged out successfully');
   }
 
   void chnageDetails() {
     Get.snackbar('Success', 'Logout Successful');
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      nameController.text = widget.tittle!;
+      descriptionController.text = widget.subtittle!;
+    });
+
+    super.initState();
   }
 
   @override
@@ -51,8 +72,9 @@ class _UserHeaderState extends State<UserHeader> {
                       child: CircleAvatar(
                         backgroundColor: Kcolor.textColor,
                         radius: 50.w,
-                        backgroundImage: const CachedNetworkImageProvider(
-                            'https://c.ndtvimg.com/2022-05/lq8fa9s_srk_625x300_24_May_22.jpg?im=Resize=(1230,900)'),
+                        backgroundImage: CachedNetworkImageProvider(
+                          widget.picture!,
+                        ),
                       ),
                     ),
                   ),
@@ -170,14 +192,14 @@ class _UserHeaderState extends State<UserHeader> {
           child: Center(
             child: ListTile(
               title: Text(
-                ' Welcome User,',
+                widget.tittle!,
                 style: GoogleFonts.poppins(
                     color: Kcolor.headingColor,
                     fontSize: 13.5.sp,
                     fontWeight: FontWeight.w700),
               ),
               subtitle: Text(
-                ' Check your Activity',
+                widget.subtittle!,
                 style: GoogleFonts.poppins(
                     color: Kcolor.primaryColor,
                     fontSize: 12.5.sp,
@@ -189,8 +211,7 @@ class _UserHeaderState extends State<UserHeader> {
                   height: 50.h,
                   width: 50.h,
                   fit: BoxFit.cover,
-                  imageUrl:
-                      'https://img.mensxp.com/media/content/2022/Aug/Header-Image_BCCL_62e91b2d4c4a5.jpeg',
+                  imageUrl: widget.picture ?? ConstantData.profilePic,
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
                   errorWidget: (context, url, error) => const Icon(Icons.error),

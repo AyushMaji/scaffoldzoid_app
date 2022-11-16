@@ -7,4 +7,5 @@ class ConstantData {
       'https://firebasestorage.googleapis.com/v0/b/scaffoldzoid.appspot.com/o/banner%2Forange_icon.png?alt=media&token=f0cdc2d1-84aa-4472-bfec-f53393f81be4';
   static String profilePic =
       "https://firebasestorage.googleapis.com/v0/b/scaffoldzoid.appspot.com/o/banner%2Favatar.png?alt=media&token=232bf921-3bf7-4244-abbb-72f8d3021671";
+  static String homepageBanner = 'assets/images/homepage_banner.png';
 }

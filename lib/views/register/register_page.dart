@@ -1,19 +1,36 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dropdown_button2/custom_dropdown_button2.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scaffoldzoid_app/constant/data.dart';
+import 'package:scaffoldzoid_app/controller/auth/register/register_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
+import 'package:scaffoldzoid_app/utils/messsenger.dart';
+import 'package:scaffoldzoid_app/views/dashboard/buyer/home_page.dart';
 import 'package:scaffoldzoid_app/views/login/login_page.dart';
+import 'package:scaffoldzoid_app/views/user_details/userdetails_page.dart';
 import 'package:scaffoldzoid_app/widgets/button/button.dart';
 import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
   @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  String iteamData = "Select";
+  String? selectedValue;
+  final List<String> items = [
+    'Buyer',
+    'Seller',
+  ];
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    final TextEditingController confirmPasswordController =
-        TextEditingController();
     void register() {
       if (emailController.text == '' ||
           passwordController.text == '' ||
@@ -21,25 +38,52 @@ class RegisterPage extends StatelessWidget {
         Get.snackbar('Error', 'Please fill all the fields');
       } else if (passwordController.text != confirmPasswordController.text) {
         Get.snackbar('Error', 'Password and Confirm Password do not match');
+      } else if (iteamData == "Select") {
+        Get.snackbar('Error', 'Please select your role');
       } else {
-        Get.snackbar('Success', 'Registration Successful');
+        context
+            .read<RegisterBloc>()
+            .add(RegisterEvent.registerWithEmailAndPasswordPressed(
+              email: emailController.text,
+              password: passwordController.text,
+              role: iteamData,
+            ));
       }
     }
 
     return Scaffold(
       backgroundColor: Kcolor.bgColor,
-      bottomNavigationBar: SizedBox(
-        height: 40.h,
-        child: Button(
-          label: 'REGISTER',
-          onPressed: register,
-        ),
+      bottomNavigationBar: BlocConsumer<RegisterBloc, RegisterState>(
+        listener: (context, state) {
+          state.maybeWhen(
+            orElse: () {},
+            success: (role) {
+              if (role == 'Seller') {
+                Get.offAll(() => const UserDetailsPage());
+              } else {
+                Get.offAll(() => const BuyerHomePage());
+              }
+            },
+            failure: (failure) {
+              CustomSnackbar.flutterSnackbar(failure, context);
+            },
+          );
+        },
+        builder: (context, state) {
+          return SizedBox(
+            height: 40.h,
+            child: Button(
+              label: 'REGISTER',
+              onPressed: register,
+            ),
+          );
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             CachedNetworkImage(
-              height: 290.h,
+              height: 250.h,
               width: double.infinity,
               fit: BoxFit.cover,
               imageUrl:
@@ -114,6 +158,37 @@ class RegisterPage extends StatelessWidget {
             SizedBox(
               height: 20.h,
             ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 13.w),
+              child: CustomDropdownButton2(
+                icon: Icon(
+                  Icons.arrow_drop_down,
+                  color: Kcolor.primaryColor,
+                  size: 25.sp,
+                ),
+                buttonWidth: double.infinity,
+                buttonHeight: 45.h,
+                dropdownWidth: 300.w,
+                buttonDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  border: Border.all(
+                    color: const Color.fromARGB(0, 255, 255, 255),
+                    width: 0,
+                  ),
+                  color: const Color.fromRGBO(250, 250, 250, 1),
+                ),
+                hint: iteamData,
+                dropdownItems: items,
+                value: selectedValue,
+                onChanged: (value) {
+                  setState(() {
+                    selectedValue = value;
+                    iteamData = value!;
+                  });
+                },
+              ),
+            ),
+            SizedBox(height: 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

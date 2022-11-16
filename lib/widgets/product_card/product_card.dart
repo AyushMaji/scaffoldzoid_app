@@ -3,7 +3,7 @@ import 'package:scaffoldzoid_app/utils/barrel.dart';
 
 class ProductCard extends StatelessWidget {
   final String title;
-  final String description;
+  final bool isAvailability;
   final String price;
   final String image;
   final GestureTapCallback onTapDlt;
@@ -12,7 +12,7 @@ class ProductCard extends StatelessWidget {
   const ProductCard(
       {super.key,
       required this.title,
-      required this.description,
+      required this.isAvailability,
       required this.price,
       required this.image,
       required this.onTapDlt,
@@ -47,13 +47,21 @@ class ProductCard extends StatelessWidget {
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600),
             ),
-            subtitle: Text(
-              description,
-              style: TextStyle(
-                  color: Kcolor.primaryColor,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w700),
-            ),
+            subtitle: isAvailability
+                ? Text(
+                    'Available',
+                    style: TextStyle(
+                        color: Kcolor.primaryColor,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700),
+                  )
+                : Text(
+                    'Not Available',
+                    style: TextStyle(
+                            color: Kcolor.primaryColor,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700),
+                  ),
             onTap: onTapEdit,
             trailing: GestureDetector(
               onTap: onTapDlt,

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scaffoldzoid_app/controller/get_product/get_product_bloc.dart';
 import 'package:scaffoldzoid_app/controller/product/product_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/utils/messsenger.dart';
@@ -9,14 +10,15 @@ import 'package:scaffoldzoid_app/widgets/button/button.dart';
 import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 import 'package:scaffoldzoid_app/widgets/price_card/price_card.dart';
 
-class AddItemsPage extends StatefulWidget {
-  const AddItemsPage({super.key});
+class EditItemsPage extends StatefulWidget {
+  const EditItemsPage({super.key});
 
   @override
-  State<AddItemsPage> createState() => _AddItemsPageState();
+  State<EditItemsPage> createState() => _EditItemsPageState();
 }
 
-class _AddItemsPageState extends State<AddItemsPage> {
+class _EditItemsPageState extends State<EditItemsPage> {
+  String? productId;
   String iteamData = "Weight";
   String? selectedValue;
   bool isAvailability = true;
@@ -35,6 +37,11 @@ class _AddItemsPageState extends State<AddItemsPage> {
   final TextEditingController orangeQuantity = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     void addItems() {
       if (orangeType.text == '') {
@@ -44,24 +51,38 @@ class _AddItemsPageState extends State<AddItemsPage> {
       } else if (priceList.isEmpty) {
         CustomSnackbar.errorSnackbar('error', 'Please enter orange price');
       } else {
-        Get.to(const AddItemsPage());
         log(priceList.toString());
         log(orangeType.text);
         log(orangeCategory.text);
         log(isAvailability.toString());
-        // call add product bloc
 
-        context.read<ProductBloc>().add(ProductEvent.addProduct(
-            orangeType.text, orangeCategory.text, isAvailability, priceList));
+        context.read<ProductBloc>().add(ProductEvent.updateProduct(
+            productId: productId.toString(),
+            orangeName: orangeType.text,
+            category: orangeCategory.text,
+            isAvsilsbility: isAvailability,
+            iteams: priceList));
       }
     }
 
     return Scaffold(
       bottomNavigationBar: SizedBox(
         height: 40.h,
-        child: Button(
-          label: 'SAVE',
-          onPressed: addItems,
+        child: BlocConsumer<ProductBloc, ProductState>(
+          listener: (context, state) {
+            state.maybeWhen(
+                orElse: () {},
+                success: () {
+                  CustomSnackbar.successSnackbar('success', "Product updated");
+                  Navigator.pop(context);
+                });
+          },
+          builder: (context, state) {
+            return Button(
+              label: 'SAVE',
+              onPressed: addItems,
+            );
+          },
         ),
       ),
       backgroundColor: Kcolor.bgColor,
@@ -85,12 +106,27 @@ class _AddItemsPageState extends State<AddItemsPage> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        child: BlocConsumer<ProductBloc, ProductState>(
+        child: BlocConsumer<GetProductBloc, GetProductState>(
           listener: (context, state) {
             state.maybeWhen(
               orElse: () {},
-              success: () {
-                Get.back();
+              loaded: (productDetails) {
+                orangeType.text = productDetails.name;
+                orangeCategory.text = productDetails.category;
+                isAvailability = productDetails.isAvailability;
+
+                setState(() {
+                  productId = productDetails.productId;
+                });
+
+                for (int i = 0; i < productDetails.iteams.length; i++) {
+                  priceList.add(
+                    {
+                      'price': productDetails.iteams[i].price,
+                      'quantity': productDetails.iteams[i].quantity,
+                    },
+                  );
+                }
               },
               failure: (error) {
                 CustomSnackbar.errorSnackbar('error', error);
@@ -232,12 +268,10 @@ class _AddItemsPageState extends State<AddItemsPage> {
                                   'error', 'Please enter quantity');
                             } else {
                               setState(() {
-                                priceList.add(
-                                  {
-                                    "price": orangePrice.text,
-                                    "quantity": orangeQuantity.text,
-                                  },
-                                );
+                                priceList.add({
+                                  'quantity': orangeQuantity.text,
+                                  'price': orangePrice.text
+                                });
                                 orangePrice.text = '';
                               });
                             }
