@@ -26,7 +26,7 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
           .setUserDetails(userId, event.name, event.description, event.imageUrl)
           .then((ApiResult result) {
         result.when(success: (data) {
-          Get.to(() => SellerHomePage(uuid: userId));
+          Get.offAll(() => SellerHomePage(uuid: userId));
           // emit(_Success(userDetails: UserDataModel.fromJson(data)));
         }, failure: (error) {
           Logger().e(error);
