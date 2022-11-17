@@ -1,10 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:scaffoldzoid_app/constant/data.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scaffoldzoid_app/controller/auth/login/login_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
+import 'package:scaffoldzoid_app/views/dashboard/buyer/home_page.dart';
 import 'package:scaffoldzoid_app/views/dashboard/seller/home_page.dart';
 import 'package:scaffoldzoid_app/views/register/register_page.dart';
-import 'package:scaffoldzoid_app/widgets/button/button.dart';
-import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -13,23 +12,64 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+    //* login  funtion ========
     void login() {
       if (emailController.text == '' || passwordController.text == '') {
         Get.snackbar('Error', 'Please fill all the fields');
       } else {
-        Get.snackbar('Success', 'Login Successful');
-        Get.offAll(() => const SellerHomePage());
+        context.read<LoginBloc>().add(
+            LoginEvent.loginWithEmailAndPasswordPressed(
+                email: emailController.text,
+                password: passwordController.text));
       }
     }
 
     return Scaffold(
       backgroundColor: Kcolor.bgColor,
-      bottomNavigationBar: SizedBox(
-        height: 50.h,
-        child: Button(
-          label: 'LOGIN',
-          onPressed: login,
-        ),
+      bottomNavigationBar: BlocConsumer<LoginBloc, LoginState>(
+        listener: (context, state) {
+          state.maybeWhen(
+              success: (role, uid) {
+                if (role == 'Seller') {
+                  Get.offAll(() => SellerHomePage(uuid: uid));
+                } else {
+                  Get.offAll(() => const BuyerHomePage());
+                }
+              },
+              failure: (failure) {
+                CustomSnackbar.errorSnackbar('error', failure);
+              },
+              orElse: () {});
+        },
+        builder: (context, state) {
+          return state.when(failure: (String failure) {
+            return SizedBox(
+              height: 40.h,
+              child: Button(
+                label: 'LOGIN',
+                onPressed: login,
+              ),
+            );
+          }, initial: () {
+            return SizedBox(
+              height: 40.h,
+              child: Button(
+                label: 'LOGIN',
+                onPressed: login,
+              ),
+            );
+          }, loading: () {
+            return const LinearProgressIndicator();
+          }, success: (String role, String uid) {
+            return SizedBox(
+              height: 40.h,
+              child: Button(
+                label: 'LOGIN',
+                onPressed: login,
+              ),
+            );
+          });
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -39,8 +79,10 @@ class LoginPage extends StatelessWidget {
               width: double.infinity,
               fit: BoxFit.cover,
               imageUrl: ConstantData.registerbanner,
-              placeholder: (context, url) =>
-                  const Center(child: CircularProgressIndicator()),
+              placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(
+                color: Kcolor.primaryColor,
+              )),
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
             SizedBox(
