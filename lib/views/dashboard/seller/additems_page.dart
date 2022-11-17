@@ -4,9 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scaffoldzoid_app/controller/product/product_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
-import 'package:scaffoldzoid_app/utils/messsenger.dart';
-import 'package:scaffoldzoid_app/widgets/button/button.dart';
-import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 import 'package:scaffoldzoid_app/widgets/price_card/price_card.dart';
 
 class AddItemsPage extends StatefulWidget {
@@ -21,14 +18,7 @@ class _AddItemsPageState extends State<AddItemsPage> {
   String? selectedValue;
   bool isAvailability = true;
   List priceList = [];
-  final List<String> items = [
-    '500 gm',
-    '1 kg',
-    '2 kg',
-    '3 kg',
-    '4 kg',
-    '5 kg',
-  ];
+  final List<String> items = ConstantData.orangeWeight;
   final TextEditingController orangeType = TextEditingController();
   final TextEditingController orangeCategory = TextEditingController();
   final TextEditingController orangePrice = TextEditingController();
@@ -36,6 +26,7 @@ class _AddItemsPageState extends State<AddItemsPage> {
 
   @override
   Widget build(BuildContext context) {
+    //* validate all the fields and then add the product
     void addItems() {
       if (orangeType.text == '') {
         CustomSnackbar.errorSnackbar('error', 'Please enter orange type');

@@ -1,4 +1,4 @@
-import 'package:scaffoldzoid_app/constant/data.dart';
+import 'package:scaffoldzoid_app/controller/user_details/user_details_bloc.dart';
 import 'package:scaffoldzoid_app/repo/Auth_repo.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/views/dashboard/buyer/productdetails_page.dart';
@@ -71,6 +71,9 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
                             fontWeight: FontWeight.w600)),
                   ],
                 ),
+                SizedBox(
+                  height: 10.h,
+                ),
                 StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection('users')
@@ -114,7 +117,15 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
                                 types: snapshot.data!.docs[index]
                                     ['description'],
                                 onTap: () {
-                                  Get.to(() => const ProductDetailspage());
+                                  Logger().i(snapshot.data!.docs[index].id);
+                                  Get.to(() => ProductDetailspage(
+                                        productId: snapshot.data!.docs[index]
+                                            ['uid'],
+                                      ));
+                                  context.read<UserDetailsBloc>().add(
+                                      UserDetailsEvent.getOwnerDetails(
+                                          ownerId:
+                                              snapshot.data!.docs[index].id));
                                 });
                           });
                     })

@@ -1,12 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scaffoldzoid_app/constant/data.dart';
 import 'package:scaffoldzoid_app/controller/get_product/get_product_bloc.dart';
 import 'package:scaffoldzoid_app/controller/product/product_bloc.dart';
 import 'package:scaffoldzoid_app/controller/user_details/user_details_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/views/dashboard/seller/additems_page.dart';
 import 'package:scaffoldzoid_app/views/dashboard/seller/edititem_pagedart.dart';
-import 'package:scaffoldzoid_app/widgets/button/button.dart';
 import 'package:scaffoldzoid_app/widgets/product_card/product_card.dart';
 import 'package:scaffoldzoid_app/widgets/user_header/user_header.dart';
 
@@ -48,7 +46,7 @@ class _SellerHomePageState extends State<SellerHomePage> {
             Center(
               child: Image.asset(
                 ConstantData.logoBg,
-                width: 145.w,
+                width: 175.w,
                 height: 100.h,
               ),
             ),
@@ -57,11 +55,18 @@ class _SellerHomePageState extends State<SellerHomePage> {
               builder: (context, state) {
                 return state.maybeWhen(
                   orElse: () => const SizedBox(),
+                  loading: () {
+                    return const CircularProgressIndicator(
+                      color: Kcolor.primaryColor,
+                    );
+                  },
                   success: (userDetails) {
                     return UserHeader(
-                        tittle: "Welcome ${userDetails.name}",
-                        subtittle: "check all your activity",
-                        picture: userDetails.imageUrl);
+                      tittle: userDetails.name,
+                      subtittle: "check all your activity",
+                      picture: userDetails.imageUrl,
+                      description: userDetails.description,
+                    );
                   },
                 );
               },
@@ -108,8 +113,8 @@ class _SellerHomePageState extends State<SellerHomePage> {
                               child: Text(
                             'No Items Found',
                             style: GoogleFonts.poppins(
-                                color: Kcolor.headingColor,
-                                fontSize: 14.sp,
+                                color: Kcolor.textColor,
+                                fontSize: 10.sp,
                                 fontWeight: FontWeight.w600),
                           ))),
                     );

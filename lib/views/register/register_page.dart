@@ -1,15 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scaffoldzoid_app/constant/data.dart';
 import 'package:scaffoldzoid_app/controller/auth/register/register_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
-import 'package:scaffoldzoid_app/utils/messsenger.dart';
 import 'package:scaffoldzoid_app/views/dashboard/buyer/home_page.dart';
 import 'package:scaffoldzoid_app/views/login/login_page.dart';
 import 'package:scaffoldzoid_app/views/user_details/userdetails_page.dart';
-import 'package:scaffoldzoid_app/widgets/button/button.dart';
-import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -25,12 +20,10 @@ class _RegisterPageState extends State<RegisterPage> {
       TextEditingController();
   String iteamData = "Select";
   String? selectedValue;
-  final List<String> items = [
-    'Buyer',
-    'Seller',
-  ];
+  final List<String> items = ConstantData.userRole;
   @override
   Widget build(BuildContext context) {
+    //* validate user and register ==
     void register() {
       if (emailController.text == '' ||
           passwordController.text == '' ||
@@ -70,12 +63,21 @@ class _RegisterPageState extends State<RegisterPage> {
           );
         },
         builder: (context, state) {
-          return SizedBox(
-            height: 40.h,
-            child: Button(
-              label: 'REGISTER',
-              onPressed: register,
-            ),
+          return state.maybeWhen(
+            loading: () {
+              return const LinearProgressIndicator(
+                backgroundColor: Kcolor.primaryColor,
+              );
+            },
+            orElse: () {
+              return SizedBox(
+                height: 40.h,
+                child: Button(
+                  label: 'REGISTER',
+                  onPressed: register,
+                ),
+              );
+            },
           );
         },
       ),
@@ -88,8 +90,10 @@ class _RegisterPageState extends State<RegisterPage> {
               fit: BoxFit.cover,
               imageUrl:
                   ConstantData.registerbanner, // Replace this with your image
-              placeholder: (context, url) =>
-                  const Center(child: CircularProgressIndicator()),
+              placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(
+                color: Kcolor.primaryColor,
+              )),
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
             SizedBox(

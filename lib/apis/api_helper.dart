@@ -32,16 +32,6 @@ class ApiHelper {
     await _firestore.collection(collection).doc(id).update(data);
   }
 
-  //* add itams in collection and crate new collection in document ======>
-  Future<void> addItemsInCollection(String collection, String collection2,
-      String id, Map<String, dynamic> data) async {
-    await _firestore
-        .collection(collection)
-        .doc(id)
-        .collection(collection2)
-        .add(data);
-  }
-
   //* delete document by id =====================>
   Future<void> deleteData(String collection, String id) async {
     await _firestore.collection(collection).doc(id).delete();

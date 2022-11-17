@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:scaffoldzoid_app/constant/data.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 import 'package:scaffoldzoid_app/views/dashboard/buyer/home_page.dart';
 import 'package:scaffoldzoid_app/views/dashboard/seller/home_page.dart';
@@ -18,9 +17,10 @@ class SpalashPage extends StatefulWidget {
 class _SpalashPageState extends State<SpalashPage> {
   @override
   void initState() {
-    getValidationData().whenComplete(() async {});
+    getValidationData();
     super.initState();
   }
+  //* check user is login or not  ===
 
   Future<void> getValidationData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

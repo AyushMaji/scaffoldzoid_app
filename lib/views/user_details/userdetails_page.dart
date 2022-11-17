@@ -6,10 +6,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scaffoldzoid_app/controller/user_details/user_details_bloc.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
-import 'package:scaffoldzoid_app/utils/messsenger.dart';
 import 'package:scaffoldzoid_app/views/dashboard/seller/home_page.dart';
-import 'package:scaffoldzoid_app/widgets/button/button.dart';
-import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 
 class UserDetailsPage extends StatefulWidget {
   const UserDetailsPage({super.key});
@@ -25,8 +22,9 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController descriptionController = TextEditingController();
 
-    // user details set function
-    void _setUserDetails() {
+    //* user details validtion and uplode user data ==
+
+    void setUserDetails() {
       if (nameController.text.isEmpty) {
         CustomSnackbar.flutterSnackbar('Please enter your name', context);
       } else if (descriptionController.text.isEmpty) {
@@ -49,8 +47,8 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
           state.maybeWhen(
             orElse: () {},
             success: (data) {
-              Get.offAll(() => const SellerHomePage(
-                    uuid: '4b4facb8-608c-4736-be5b-15569d31f468',
+              Get.offAll(() => SellerHomePage(
+                    uuid: data.uid,
                   ));
             },
             failure: (failure) {
@@ -59,13 +57,20 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
           );
         },
         builder: (context, state) {
-          return SizedBox(
-            height: 40.h,
-            width: double.infinity,
-            child: Button(
-              onPressed: _setUserDetails,
-              label: 'GET STARTED',
-            ),
+          return state.maybeWhen(
+            orElse: () {
+              return SizedBox(
+                height: 40.h,
+                width: double.infinity,
+                child: Button(
+                  onPressed: setUserDetails,
+                  label: 'GET STARTED',
+                ),
+              );
+            },
+            loading: () {
+              return const LinearProgressIndicator();
+            },
           );
         },
       ),
@@ -203,6 +208,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
     );
   }
 
+  //* images picker fuction ==
   loadPicker() async {
     final ImagePicker picker = ImagePicker();
     XFile? pickedFile = (await picker.pickImage(source: ImageSource.gallery));
@@ -215,6 +221,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
     });
   }
 
+  //* crop image function ====
   _cropImage(File picked) async {
     CroppedFile? cropped = await ImageCropper().cropImage(
       sourcePath: picked.path,

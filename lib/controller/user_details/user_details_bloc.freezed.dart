@@ -22,6 +22,7 @@ mixin _$UserDetailsEvent {
     required TResult Function(String name, String description, File imageUrl)
         updateUserDetails,
     required TResult Function() getUserDetails,
+    required TResult Function(String ownerId) getOwnerDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$UserDetailsEvent {
     TResult? Function(String name, String description, File imageUrl)?
         updateUserDetails,
     TResult? Function()? getUserDetails,
+    TResult? Function(String ownerId)? getOwnerDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$UserDetailsEvent {
     TResult Function(String name, String description, File imageUrl)?
         updateUserDetails,
     TResult Function()? getUserDetails,
+    TResult Function(String ownerId)? getOwnerDetails,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -46,6 +49,7 @@ mixin _$UserDetailsEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_UpdateUserDetails value) updateUserDetails,
     required TResult Function(_GetUserDetails value) getUserDetails,
+    required TResult Function(_OwnerDetails value) getOwnerDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +57,7 @@ mixin _$UserDetailsEvent {
     TResult? Function(_Started value)? started,
     TResult? Function(_UpdateUserDetails value)? updateUserDetails,
     TResult? Function(_GetUserDetails value)? getUserDetails,
+    TResult? Function(_OwnerDetails value)? getOwnerDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +65,7 @@ mixin _$UserDetailsEvent {
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserDetails value)? updateUserDetails,
     TResult Function(_GetUserDetails value)? getUserDetails,
+    TResult Function(_OwnerDetails value)? getOwnerDetails,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -124,6 +130,7 @@ class _$_Started implements _Started {
     required TResult Function(String name, String description, File imageUrl)
         updateUserDetails,
     required TResult Function() getUserDetails,
+    required TResult Function(String ownerId) getOwnerDetails,
   }) {
     return started();
   }
@@ -135,6 +142,7 @@ class _$_Started implements _Started {
     TResult? Function(String name, String description, File imageUrl)?
         updateUserDetails,
     TResult? Function()? getUserDetails,
+    TResult? Function(String ownerId)? getOwnerDetails,
   }) {
     return started?.call();
   }
@@ -146,6 +154,7 @@ class _$_Started implements _Started {
     TResult Function(String name, String description, File imageUrl)?
         updateUserDetails,
     TResult Function()? getUserDetails,
+    TResult Function(String ownerId)? getOwnerDetails,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -160,6 +169,7 @@ class _$_Started implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_UpdateUserDetails value) updateUserDetails,
     required TResult Function(_GetUserDetails value) getUserDetails,
+    required TResult Function(_OwnerDetails value) getOwnerDetails,
   }) {
     return started(this);
   }
@@ -170,6 +180,7 @@ class _$_Started implements _Started {
     TResult? Function(_Started value)? started,
     TResult? Function(_UpdateUserDetails value)? updateUserDetails,
     TResult? Function(_GetUserDetails value)? getUserDetails,
+    TResult? Function(_OwnerDetails value)? getOwnerDetails,
   }) {
     return started?.call(this);
   }
@@ -180,6 +191,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserDetails value)? updateUserDetails,
     TResult Function(_GetUserDetails value)? getUserDetails,
+    TResult Function(_OwnerDetails value)? getOwnerDetails,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -281,6 +293,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
     required TResult Function(String name, String description, File imageUrl)
         updateUserDetails,
     required TResult Function() getUserDetails,
+    required TResult Function(String ownerId) getOwnerDetails,
   }) {
     return updateUserDetails(name, description, imageUrl);
   }
@@ -292,6 +305,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
     TResult? Function(String name, String description, File imageUrl)?
         updateUserDetails,
     TResult? Function()? getUserDetails,
+    TResult? Function(String ownerId)? getOwnerDetails,
   }) {
     return updateUserDetails?.call(name, description, imageUrl);
   }
@@ -303,6 +317,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
     TResult Function(String name, String description, File imageUrl)?
         updateUserDetails,
     TResult Function()? getUserDetails,
+    TResult Function(String ownerId)? getOwnerDetails,
     required TResult orElse(),
   }) {
     if (updateUserDetails != null) {
@@ -317,6 +332,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
     required TResult Function(_Started value) started,
     required TResult Function(_UpdateUserDetails value) updateUserDetails,
     required TResult Function(_GetUserDetails value) getUserDetails,
+    required TResult Function(_OwnerDetails value) getOwnerDetails,
   }) {
     return updateUserDetails(this);
   }
@@ -327,6 +343,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
     TResult? Function(_Started value)? started,
     TResult? Function(_UpdateUserDetails value)? updateUserDetails,
     TResult? Function(_GetUserDetails value)? getUserDetails,
+    TResult? Function(_OwnerDetails value)? getOwnerDetails,
   }) {
     return updateUserDetails?.call(this);
   }
@@ -337,6 +354,7 @@ class _$_UpdateUserDetails implements _UpdateUserDetails {
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserDetails value)? updateUserDetails,
     TResult Function(_GetUserDetails value)? getUserDetails,
+    TResult Function(_OwnerDetails value)? getOwnerDetails,
     required TResult orElse(),
   }) {
     if (updateUserDetails != null) {
@@ -402,6 +420,7 @@ class _$_GetUserDetails implements _GetUserDetails {
     required TResult Function(String name, String description, File imageUrl)
         updateUserDetails,
     required TResult Function() getUserDetails,
+    required TResult Function(String ownerId) getOwnerDetails,
   }) {
     return getUserDetails();
   }
@@ -413,6 +432,7 @@ class _$_GetUserDetails implements _GetUserDetails {
     TResult? Function(String name, String description, File imageUrl)?
         updateUserDetails,
     TResult? Function()? getUserDetails,
+    TResult? Function(String ownerId)? getOwnerDetails,
   }) {
     return getUserDetails?.call();
   }
@@ -424,6 +444,7 @@ class _$_GetUserDetails implements _GetUserDetails {
     TResult Function(String name, String description, File imageUrl)?
         updateUserDetails,
     TResult Function()? getUserDetails,
+    TResult Function(String ownerId)? getOwnerDetails,
     required TResult orElse(),
   }) {
     if (getUserDetails != null) {
@@ -438,6 +459,7 @@ class _$_GetUserDetails implements _GetUserDetails {
     required TResult Function(_Started value) started,
     required TResult Function(_UpdateUserDetails value) updateUserDetails,
     required TResult Function(_GetUserDetails value) getUserDetails,
+    required TResult Function(_OwnerDetails value) getOwnerDetails,
   }) {
     return getUserDetails(this);
   }
@@ -448,6 +470,7 @@ class _$_GetUserDetails implements _GetUserDetails {
     TResult? Function(_Started value)? started,
     TResult? Function(_UpdateUserDetails value)? updateUserDetails,
     TResult? Function(_GetUserDetails value)? getUserDetails,
+    TResult? Function(_OwnerDetails value)? getOwnerDetails,
   }) {
     return getUserDetails?.call(this);
   }
@@ -458,6 +481,7 @@ class _$_GetUserDetails implements _GetUserDetails {
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserDetails value)? updateUserDetails,
     TResult Function(_GetUserDetails value)? getUserDetails,
+    TResult Function(_OwnerDetails value)? getOwnerDetails,
     required TResult orElse(),
   }) {
     if (getUserDetails != null) {
@@ -469,6 +493,155 @@ class _$_GetUserDetails implements _GetUserDetails {
 
 abstract class _GetUserDetails implements UserDetailsEvent {
   const factory _GetUserDetails() = _$_GetUserDetails;
+}
+
+/// @nodoc
+abstract class _$$_OwnerDetailsCopyWith<$Res> {
+  factory _$$_OwnerDetailsCopyWith(
+          _$_OwnerDetails value, $Res Function(_$_OwnerDetails) then) =
+      __$$_OwnerDetailsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String ownerId});
+}
+
+/// @nodoc
+class __$$_OwnerDetailsCopyWithImpl<$Res>
+    extends _$UserDetailsEventCopyWithImpl<$Res, _$_OwnerDetails>
+    implements _$$_OwnerDetailsCopyWith<$Res> {
+  __$$_OwnerDetailsCopyWithImpl(
+      _$_OwnerDetails _value, $Res Function(_$_OwnerDetails) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ownerId = null,
+  }) {
+    return _then(_$_OwnerDetails(
+      ownerId: null == ownerId
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OwnerDetails implements _OwnerDetails {
+  const _$_OwnerDetails({required this.ownerId});
+
+  @override
+  final String ownerId;
+
+  @override
+  String toString() {
+    return 'UserDetailsEvent.getOwnerDetails(ownerId: $ownerId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OwnerDetails &&
+            (identical(other.ownerId, ownerId) || other.ownerId == ownerId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, ownerId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OwnerDetailsCopyWith<_$_OwnerDetails> get copyWith =>
+      __$$_OwnerDetailsCopyWithImpl<_$_OwnerDetails>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String name, String description, File imageUrl)
+        updateUserDetails,
+    required TResult Function() getUserDetails,
+    required TResult Function(String ownerId) getOwnerDetails,
+  }) {
+    return getOwnerDetails(ownerId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String name, String description, File imageUrl)?
+        updateUserDetails,
+    TResult? Function()? getUserDetails,
+    TResult? Function(String ownerId)? getOwnerDetails,
+  }) {
+    return getOwnerDetails?.call(ownerId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String name, String description, File imageUrl)?
+        updateUserDetails,
+    TResult Function()? getUserDetails,
+    TResult Function(String ownerId)? getOwnerDetails,
+    required TResult orElse(),
+  }) {
+    if (getOwnerDetails != null) {
+      return getOwnerDetails(ownerId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_UpdateUserDetails value) updateUserDetails,
+    required TResult Function(_GetUserDetails value) getUserDetails,
+    required TResult Function(_OwnerDetails value) getOwnerDetails,
+  }) {
+    return getOwnerDetails(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UpdateUserDetails value)? updateUserDetails,
+    TResult? Function(_GetUserDetails value)? getUserDetails,
+    TResult? Function(_OwnerDetails value)? getOwnerDetails,
+  }) {
+    return getOwnerDetails?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UpdateUserDetails value)? updateUserDetails,
+    TResult Function(_GetUserDetails value)? getUserDetails,
+    TResult Function(_OwnerDetails value)? getOwnerDetails,
+    required TResult orElse(),
+  }) {
+    if (getOwnerDetails != null) {
+      return getOwnerDetails(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OwnerDetails implements UserDetailsEvent {
+  const factory _OwnerDetails({required final String ownerId}) =
+      _$_OwnerDetails;
+
+  String get ownerId;
+  @JsonKey(ignore: true)
+  _$$_OwnerDetailsCopyWith<_$_OwnerDetails> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

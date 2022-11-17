@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logger/logger.dart';
 import 'package:scaffoldzoid_app/apis/api_result.dart';
 import 'package:scaffoldzoid_app/model/product_data/product_data_model.dart';
 import 'package:scaffoldzoid_app/repo/product_repo.dart';
@@ -18,6 +19,7 @@ class GetProductBloc extends Bloc<GetProductEvent, GetProductState> {
       result.when(success: (data) {
         emit(_Loaded(productDetails: ProductDataModel.fromJson(data)));
       }, failure: (error) {
+        Logger().e(error);
         emit(_Failure(error: error));
       });
     });

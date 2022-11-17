@@ -9,4 +9,6 @@ class UserDetailsEvent with _$UserDetailsEvent {
       required File imageUrl}) = _UpdateUserDetails;
 
   const factory UserDetailsEvent.getUserDetails() = _GetUserDetails;
+  const factory UserDetailsEvent.getOwnerDetails({required String ownerId}) =
+      _OwnerDetails;
 }

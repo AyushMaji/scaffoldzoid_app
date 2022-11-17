@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 
 class ProductCard extends StatelessWidget {
@@ -58,7 +57,7 @@ class ProductCard extends StatelessWidget {
                 : Text(
                     'Not Available',
                     style: TextStyle(
-                            color: Kcolor.primaryColor,
+                        color: Kcolor.primaryColor,
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700),
                   ),

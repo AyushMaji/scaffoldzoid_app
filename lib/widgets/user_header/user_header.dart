@@ -1,46 +1,32 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:scaffoldzoid_app/constant/data.dart';
 import 'package:scaffoldzoid_app/repo/Auth_repo.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
-import 'package:scaffoldzoid_app/utils/messsenger.dart';
 import 'package:scaffoldzoid_app/views/login/login_page.dart';
-import 'package:scaffoldzoid_app/widgets/inputfield/input_field.dart';
 
 class UserHeader extends StatefulWidget {
   final String? tittle;
   final String? subtittle;
   final String? picture;
+  final String? description;
   const UserHeader(
       {super.key,
       required this.tittle,
       required this.subtittle,
-      required this.picture});
+      required this.picture,
+      required this.description});
 
   @override
   State<UserHeader> createState() => _UserHeaderState();
 }
 
 class _UserHeaderState extends State<UserHeader> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
+  //* logout function from auth repo ==
   void logOut() {
-    // logout function from auth repo
     AuthRepo().logout().whenComplete(() => Get.offAll(const LoginPage()));
     CustomSnackbar.successSnackbar('Success', 'Logged out successfully');
   }
 
   void chnageDetails() {
     Get.snackbar('Success', 'Logout Successful');
-  }
-
-  @override
-  void initState() {
-    setState(() {
-      nameController.text = widget.tittle!;
-      descriptionController.text = widget.subtittle!;
-    });
-
-    super.initState();
   }
 
   @override
@@ -60,7 +46,7 @@ class _UserHeaderState extends State<UserHeader> {
             isScrollControlled: true,
             builder: (context) => Container(
               margin: EdgeInsets.all(20.w),
-              height: 540.h,
+              height: 300.h,
               child: Column(
                 children: [
                   SizedBox(
@@ -70,7 +56,7 @@ class _UserHeaderState extends State<UserHeader> {
                     height: 100.h,
                     child: Center(
                       child: CircleAvatar(
-                        backgroundColor: Kcolor.textColor,
+                        backgroundColor: Kcolor.headingColor,
                         radius: 50.w,
                         backgroundImage: CachedNetworkImageProvider(
                           widget.picture!,
@@ -78,98 +64,48 @@ class _UserHeaderState extends State<UserHeader> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  InputField(
-                    hintText: 'Enter your name',
-                    labelText: 'Name',
-                    controller: nameController,
-                    keyboardType: TextInputType.name,
-                    textCapitalization: TextCapitalization.words,
-                  ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    height: 200.h,
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    child: TextField(
-                      controller: descriptionController,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5.r)),
-                          borderSide: BorderSide(
-                            color: Kcolor.borderColor,
-                            width: 1.5.w,
-                          ),
-                        ),
-                        labelText: 'description',
-                        labelStyle: TextStyle(
-                          color: Kcolor.primaryColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        hintText: 'Enter your description',
-                        hintStyle: TextStyle(
-                          color: const Color.fromARGB(121, 154, 154, 154),
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5.r)),
-                          borderSide: BorderSide(
-                            color: const Color.fromARGB(127, 242, 118, 3),
-                            width: 1.5.w,
-                          ),
-                        ),
-                      ),
-                      minLines: 6,
-                      maxLines: null,
+                  Text(
+                    widget.tittle!,
+                    style: TextStyle(
+                      color: Kcolor.textColor,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    widget.description!,
+                    style: TextStyle(
+                      color: Kcolor.textColor,
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w400,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    maxLines: 3,
+                  ),
                   const Spacer(),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Kcolor.primaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.r),
-                            ),
-                          ),
-                          onPressed: logOut,
-                          child: const Text('Log Out',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                              )),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Kcolor.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.r),
                         ),
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Kcolor.primaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.r),
-                            ),
-                          ),
-                          onPressed: chnageDetails,
-                          child: const Text('Update',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                              )),
-                        ),
-                      ),
-                    ],
+                      onPressed: logOut,
+                      child: const Text('Log Out',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                          )),
+                    ),
                   )
                 ],
               ),
@@ -192,7 +128,7 @@ class _UserHeaderState extends State<UserHeader> {
           child: Center(
             child: ListTile(
               title: Text(
-                widget.tittle!,
+                "Welcome ${widget.tittle!}",
                 style: GoogleFonts.poppins(
                     color: Kcolor.headingColor,
                     fontSize: 13.5.sp,
@@ -213,7 +149,9 @@ class _UserHeaderState extends State<UserHeader> {
                   fit: BoxFit.cover,
                   imageUrl: widget.picture ?? ConstantData.profilePic,
                   placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
+                      const CircularProgressIndicator(
+                    color: Kcolor.primaryColor,
+                  ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),

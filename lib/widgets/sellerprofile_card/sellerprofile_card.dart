@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
 
 class SellerProfileCard extends StatelessWidget {
@@ -48,16 +47,25 @@ class SellerProfileCard extends StatelessWidget {
                         const Icon(Icons.error),
                   ),
                 ),
-                title: Text(name,
-                    style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w600)),
-                subtitle: Text(types,
-                    style: GoogleFonts.poppins(
-                        color: Kcolor.textColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w500)),
+                title: Text(
+                  name,
+                  style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w600),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                subtitle: Text(
+                  types,
+                  style: GoogleFonts.poppins(
+                    color: Kcolor.textColor,
+                    fontSize: 11.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                   color: Kcolor.primaryColor,

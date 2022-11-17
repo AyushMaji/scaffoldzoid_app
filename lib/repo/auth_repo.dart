@@ -1,4 +1,3 @@
-import 'package:logger/logger.dart';
 import 'package:scaffoldzoid_app/apis/api_result.dart';
 import 'package:scaffoldzoid_app/apis/network.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';

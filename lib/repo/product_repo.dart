@@ -1,4 +1,3 @@
-import 'package:logger/logger.dart';
 import 'package:scaffoldzoid_app/apis/api_result.dart';
 import 'package:scaffoldzoid_app/apis/network.dart';
 import 'package:scaffoldzoid_app/utils/barrel.dart';
@@ -30,11 +29,7 @@ class ProductRepo {
     try {
       await _network
           .addProductData('product', data, productId)
-          .whenComplete(() {
-        // for (var i = 0; i < iteams.length; i++) {
-        //   _network.addProductItems('product', 'items', iteams[i], productId);
-        // }
-      });
+          .whenComplete(() {});
       return const ApiResult.success(data: 'Product added successfully');
     } catch (e) {
       Logger().e(e);
@@ -53,7 +48,7 @@ class ProductRepo {
     }
   }
 
-  //  get product details by id ==============>
+  //*  get product details by id ==============>
   Future<ApiResult> getProductDetailsById(String productId) async {
     try {
       final DocumentSnapshot<Map<String, dynamic>> data =
@@ -65,7 +60,7 @@ class ProductRepo {
     }
   }
 
-  // update product details by id ==============>
+  //* update product details by id ==============>
   Future<ApiResult> updateProductDetails({
     required String productId,
     required String name,

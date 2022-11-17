@@ -55,16 +55,16 @@ class Network {
   Future<void> deleteProductData(String collection, String id) async {
     return await _apiHelper.deleteData(collection, id);
   }
-  // * get all product data by id ===========>
 
+  // * get all product data by id ===========>
   Future<DocumentSnapshot<Map<String, dynamic>>> getAllProductDataById(
       String collection, String id) async {
     final DocumentSnapshot<Map<String, dynamic>> data =
         await _apiHelper.readDataById(collection, id);
     return data;
   }
-  // * get all product data update by id ===========>
 
+  // * product data update by id ===========>
   Future<void> updateProductData(
       String collection, String id, Map<String, dynamic> data) async {
     return await _apiHelper.updateField(collection, id, data);
